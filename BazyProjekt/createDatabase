@@ -1,0 +1,113 @@
+create database db;
+use db;
+
+drop table if exists `Products`;
+create table Products( 
+			id INT auto_increment,
+			name varchar(120),
+			weight int,
+			price int,
+			price_type ENUM("unit", "weight") default("unit"),
+            is_18 ENUM("yes", "no") default("no"),
+            primary key(id)
+            );
+
+drop table if exists `Employees`;           
+
+create table Employees( 
+			id INT auto_increment,
+			name varchar(120),
+			surname varchar(120),
+            primary key(id)
+            );
+drop table if exists `Contracts`;            
+create table Contracts( 
+			id INT auto_increment,
+			employee_id INT,
+            beginning date,
+            ending date,
+			type enum("employment_contract", "mandatory_contract"),
+            salary int,
+            position enum ("admin","owner", "manager","worker"),
+            foreign key(employee_id) references Employees(id),
+            primary key(id)
+            );
+
+drop table if exists `Deliveries`;
+create table Deliveries( 
+			id INT auto_increment,
+			planned_date datetime,
+            status enum ("awaiting","cancelled", "realised"),
+            supplier varchar(120),
+            primary key(id)
+            );
+            
+drop table if exists `Delivery_Products`;            
+create table Delivery_Products(
+			id int auto_increment,
+			delivery_id int,
+            product_id int,
+			amount int,
+            foreign key(delivery_id) references Deliveries(id),
+            foreign key(product_id) references Products(id),
+            primary key(id)
+            );
+
+drop table if exists `Invoices`;
+
+create table Invoices( 
+			id int auto_increment,
+			nip int default null,
+            date datetime,
+            type enum ("receipt", "invoice"),
+            primary key(id)
+            );            
+
+drop table if exists `Invoice_Products`;
+create table Invoice_Products( 
+			id int auto_increment,
+			invoice_id int,
+            product_id int,
+			amount int,
+            foreign key(invoice_id) references Invoices(id),
+            foreign key(product_id) references Products(id),
+            primary key(id)
+            );            
+            
+            
+drop table if exists `Schedule`;
+create table Schedule( 
+		
+        id int auto_increment,
+		employee_id INT,
+		beginning datetime,
+		ending datetime,
+		foreign key(employee_id) references Employees(id),
+		primary key(id)
+         );  
+	
+drop table if exists `Sales_by_day`;
+create table Sales_by_day( 
+			date date,
+            amount int default 0,
+            primary key(date)
+            );  
+
+drop table if exists `Products_aviability`;
+create table Products_aviability( 
+			prod_id int,
+            shop_amount int,
+            warehouse_amount int,
+            primary key (prod_id),
+            foreign key(prod_id) references Products(id)
+            );  
+            
+drop table if exists `Accounts`;
+create table Accounts( 
+			login varchar(120),
+            password varchar(120),
+            employee_id int,
+            foreign key(employee_id) references Employees(id),
+            primary key (employee_id)
+            ); 
+           
