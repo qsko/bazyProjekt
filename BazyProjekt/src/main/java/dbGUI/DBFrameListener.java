@@ -3,6 +3,8 @@ package dbGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import dbIntegration.TableFrame;
+
 public class DBFrameListener implements ActionListener{
 	private DatabaseFrame dbFrame;
 
@@ -42,7 +44,7 @@ public class DBFrameListener implements ActionListener{
 		}
 		else if (e.getActionCommand().equals("Table")){
 			//TODO
-			dbFrame.sendErrorMessage("TODO Table");
+			new TableFrame(dbFrame);
 		}
 		else if (e.getActionCommand().equals("Backup")){
 			//TODO

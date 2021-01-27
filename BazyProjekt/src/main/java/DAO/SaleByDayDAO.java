@@ -19,7 +19,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object saleByDay) {
 		
-		SessionFactory sessionFactory =HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
 		try {

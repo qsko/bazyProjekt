@@ -26,6 +26,10 @@ public class StringDisplayer {
 		current=0;
 	}
 	
+	public void flush() {
+		myArea.setText("");
+	}
+	
 	public void displayN() {
 		int i=current;
 		int currentMax=getCurrentMax();
