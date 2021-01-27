@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,6 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import DAO.EmployeeDAO;
+import entity.Employee;
 
 public class DatabaseFrame {
 	private JFrame myFrame;
@@ -64,7 +69,8 @@ public class DatabaseFrame {
 		if(welcomeMessage!=null)
 				sendMessage(welcomeMessage);
 		
-		displayStringArray(test);
+		EmployeeDAO edao = new EmployeeDAO();
+		displayStringArray(edao.getObjectList());
 	}
 	
 	/**Funkcja wysyla zwykla wiadomosc w prawym, gornym rogu*/
@@ -78,8 +84,8 @@ public class DatabaseFrame {
 	}
 
 	/**Funkcja wyswietla dany zbior lancuchow znakow*/
-	public void displayStringArray(String [] arr) {
-		myStringDisplayer.setStringArray(arr);
+	public void displayStringArray(List<?> list) {
+		myStringDisplayer.setStringArray(list);
 		myStringDisplayer.displayN();
 		checkConstrains();
 	}

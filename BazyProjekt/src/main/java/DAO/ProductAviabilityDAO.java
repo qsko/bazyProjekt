@@ -11,9 +11,9 @@ import entity.InvoiceProduct;
 import entity.ProductAviability;
 import util.HibernateUtil;
 
-public class ProductAviabilityDAO {
+public class ProductAviabilityDAO implements interfaceDAO{
 	//add method
-	public void addProductAviability(ProductAviability productAviability) {
+	public void addObject(Object productAviability) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -21,7 +21,7 @@ public class ProductAviabilityDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.save(productAviability);
+			currentSession.save((ProductAviability)productAviability);
 			transaction.commit();
 			
 		}catch(Exception ex) {
@@ -34,7 +34,7 @@ public class ProductAviabilityDAO {
 	}
 	
 	//update method
-	public void updateProductAviability(ProductAviability productAviability) {
+	public void updateObject(Object productAviability) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -43,7 +43,7 @@ public class ProductAviabilityDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(productAviability);
+			currentSession.saveOrUpdate((ProductAviability)productAviability);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -55,7 +55,7 @@ public class ProductAviabilityDAO {
 	}
 	
 	//delete method
-	public void deleteProductAviability(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		ProductAviability productAviability = null;
@@ -76,7 +76,7 @@ public class ProductAviabilityDAO {
 	}
 	
 	//getter by id
-	public ProductAviability getProductAviability(int id) {
+	public ProductAviability getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		ProductAviability productAviability = null;
@@ -95,7 +95,7 @@ public class ProductAviabilityDAO {
 	}
 	
 	//get all method
-	public List<ProductAviability> getProductsAviability(){
+	public List<ProductAviability> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

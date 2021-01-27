@@ -10,16 +10,16 @@ import org.hibernate.query.Query;
 import entity.InvoiceProduct;
 import util.HibernateUtil;
 
-public class InvoiceProductDAO {
+public class InvoiceProductDAO implements interfaceDAO{
 	//add method
-	public void addInvoiceProduct(InvoiceProduct invoiceProduct) {
+	public void addObject(Object invoiceProduct) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()){
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.save(invoiceProduct);
+			currentSession.save((InvoiceProduct)invoiceProduct);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -31,7 +31,7 @@ public class InvoiceProductDAO {
 	}
 	
 	//update method
-	public void updateInvoiceProduct(InvoiceProduct invoiceProduct) {
+	public void updateObject(Object invoiceProduct) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -40,7 +40,7 @@ public class InvoiceProductDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(invoiceProduct);
+			currentSession.saveOrUpdate((InvoiceProduct)invoiceProduct);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -52,7 +52,7 @@ public class InvoiceProductDAO {
 	}
 	
 	//delete method
-	public void deleteInvoiceProduct(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		InvoiceProduct invoiceProduct = null;
@@ -73,7 +73,7 @@ public class InvoiceProductDAO {
 	}
 	
 	//getter by id
-	public InvoiceProduct getInvoiceProduct(int id) {
+	public InvoiceProduct getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		InvoiceProduct invoiceProduct = null;
@@ -94,7 +94,7 @@ public class InvoiceProductDAO {
 	}
 	
 	//get all method
-	public List<InvoiceProduct> getInvoiceProducts(){
+	public List<InvoiceProduct> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

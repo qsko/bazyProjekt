@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dbGUI.DatabaseFrame;
+import login.VerifyLogin;
 
 public class LoginFrame {
 	private JFrame myFrame;
@@ -95,6 +97,17 @@ public class LoginFrame {
 				System.out.println("Proba logowania: "+login+" haslo: "+password);
 	
 				//TODO logowanie
+				try {
+					VerifyLogin vl = new VerifyLogin(login,password);
+					vl.buildConfig();
+					vl.verify();
+				}
+				catch (Exception f) {
+					myLabel.setText("Blad logowania. Sprobuj ponownie.");
+					System.out.println(f.toString());
+					return;
+				}
+				
 				myFrame.setVisible(false);
 				myFrame.dispose();
 				new DatabaseFrame("Welcome to Stonka database! Logged in as "+login+".");

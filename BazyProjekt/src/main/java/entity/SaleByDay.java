@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +16,10 @@ public class SaleByDay {
 
 	
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
 	@Column(name ="date")
 	private LocalDate date;
 	
@@ -32,7 +38,7 @@ public class SaleByDay {
 
 	@Override
 	public String toString() {
-		return "SaleByDay [date=" + date + ", amount=" + amount + "]";
+		return "SaleByDay [id="+id+", date=" + date + ", amount=" + amount + "]";
 	}
 
 	public LocalDate getDate() {
@@ -49,5 +55,13 @@ public class SaleByDay {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
 	}
 }

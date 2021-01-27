@@ -87,10 +87,11 @@ create table Schedule(
          );  
 	
 drop table if exists `Sales_by_day`;
-create table Sales_by_day( 
+create table Sales_by_day(
+			id int auto_increment,
 			date date,
             amount int default 0,
-            primary key(date)
+            primary key(id)
             );  
 
 drop table if exists `Products_aviability`;

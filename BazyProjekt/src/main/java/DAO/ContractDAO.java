@@ -14,10 +14,10 @@ import enums.ContractType;
 import enums.Position;
 import util.HibernateUtil;
 
-public class ContractDAO {
+public class ContractDAO implements interfaceDAO{
 	
 	//add method
-	public void addContract(Contract contract) {
+	public void addObject(Object contract) {
 			
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -25,7 +25,7 @@ public class ContractDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 				
 			transaction = currentSession.beginTransaction();
-			currentSession.save(contract);
+			currentSession.save((Contract)contract);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -38,7 +38,7 @@ public class ContractDAO {
 	}
 		
 	//update method
-	public void updateContract(Contract contract) {
+	public void updateObject(Object contract) {
 			
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -47,7 +47,7 @@ public class ContractDAO {
 		try (Session currentSession = sessionFactory.getCurrentSession()){
 				
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(contract);
+			currentSession.saveOrUpdate((Contract)contract);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -59,7 +59,7 @@ public class ContractDAO {
 	}
 		
 		//delete method
-	public void deleteContract(int id) {
+	public void removeObject(int id) {
 			
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Contract contract = null;
@@ -80,7 +80,7 @@ public class ContractDAO {
 	}
 		
 	//getter by id
-	public Contract getContractById(int id) {
+	public Contract getObjectById(int id) {
 			
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Contract contract = null;
@@ -101,7 +101,7 @@ public class ContractDAO {
 	}
 	
 	//get all method
-	public List<Contract> getContracts(){
+	public List<Contract> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

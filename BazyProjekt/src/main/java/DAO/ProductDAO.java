@@ -13,11 +13,11 @@ import enums.Is_18;
 import enums.PriceType;
 import util.HibernateUtil;
 
-public class ProductDAO {
+public class ProductDAO implements interfaceDAO{
 	
 	
 	//add method
-	public void addProduct(Product product) {
+	public void addObject(Object product) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -25,7 +25,7 @@ public class ProductDAO {
 			
 			transaction = currentSession.beginTransaction();
 			
-			currentSession.save(product);
+			currentSession.save((Product)product);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -37,7 +37,7 @@ public class ProductDAO {
 	}
 	
 	//update method
-	public void updateProduct(Product product) {
+	public void updateObject(Object product) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -46,7 +46,7 @@ public class ProductDAO {
 		try (Session currentSession = sessionFactory.getCurrentSession()){
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(product);
+			currentSession.saveOrUpdate((Product)product);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -58,7 +58,7 @@ public class ProductDAO {
 	}
 	
 	//delete method
-	public void deleteProduct(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Product product = null;
@@ -76,7 +76,7 @@ public class ProductDAO {
 	}
 	
 	//getter by id
-	public Product getProduct(int id) {
+	public Product getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Product product = null;
@@ -98,7 +98,7 @@ public class ProductDAO {
 	}
 	
 	//get all method
-	public List<Product> getProducts(){
+	public List<Product> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

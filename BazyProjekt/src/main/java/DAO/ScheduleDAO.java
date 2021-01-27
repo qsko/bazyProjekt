@@ -9,17 +9,17 @@ import org.hibernate.query.Query;
 import entity.Schedule;
 import util.HibernateUtil;
 
-public class ScheduleDAO {
+public class ScheduleDAO implements interfaceDAO{
 
 	//add method
-	public void addSchedule(Schedule schedule) {
+	public void addObject(Object schedule) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.save(schedule);
+			currentSession.save((Schedule)schedule);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -32,7 +32,7 @@ public class ScheduleDAO {
 	}
 	
 	//update method
-	public void updateSchedule(Schedule schedule) {
+	public void updateObject(Object schedule) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -40,7 +40,7 @@ public class ScheduleDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(schedule);
+			currentSession.saveOrUpdate((Schedule)schedule);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -53,7 +53,7 @@ public class ScheduleDAO {
 	}
 	
 	//delete method
-	public void deleteSchedule(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -73,7 +73,7 @@ public class ScheduleDAO {
 	}
 	
 	//getter by date
-	public Schedule getSchedule(int id) {
+	public Schedule getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -94,7 +94,7 @@ public class ScheduleDAO {
 	}
 	
 	//get all method
-	public List<Schedule> getSchedules(){
+	public List<Schedule> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

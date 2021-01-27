@@ -24,11 +24,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-//	 	Employee employee = new Employee();
-//	 	employee.setName("nowy");
-//	 	employee.setSurname("pracownik");
-//	 	EmployeeDAO employeeDao= new EmployeeDAO();
-//	 	employeeDao.addEmployee(employee);
+	 	Employee employee = new Employee();
+	 	employee.setName("nowy3");
+	 	employee.setSurname("pracownik");
+	 	EmployeeDAO employeeDao= new EmployeeDAO();
+	 	employeeDao.addObject(employee);
 //	 	
 //	 	Employee employee2 = new Employee();
 //	 	employee2.setName("nowy2");

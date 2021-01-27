@@ -11,10 +11,10 @@ import entity.Account;
 import entity.DeliveryProduct;
 import util.HibernateUtil;
 
-public class DeliveryProductsDAO {
+public class DeliveryProductsDAO implements interfaceDAO{
 	
 	//add method
-	public void addDeliveryProduct(DeliveryProduct deliveryProducts) {
+	public void addObject(Object deliveryProducts) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -23,7 +23,7 @@ public class DeliveryProductsDAO {
 			
 			transaction = currentSession.beginTransaction();
 			
-			currentSession.save(deliveryProducts);
+			currentSession.save((DeliveryProduct)deliveryProducts);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -34,7 +34,7 @@ public class DeliveryProductsDAO {
 	}
 	
 	//update method
-	public void updateDeliveryProduct(DeliveryProduct deliveryProduct) {
+	public void updateObject(Object deliveryProduct) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -43,7 +43,7 @@ public class DeliveryProductsDAO {
 		try (Session currentSession = sessionFactory.getCurrentSession()){
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(deliveryProduct);
+			currentSession.saveOrUpdate((DeliveryProduct)deliveryProduct);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -55,7 +55,7 @@ public class DeliveryProductsDAO {
 	}
 	
 	//delete method
-	public void deleteDeliveryProduct(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		DeliveryProduct deliveryProduct = null;
@@ -76,7 +76,7 @@ public class DeliveryProductsDAO {
 	}
 	
 	//getter by id
-	public DeliveryProduct getDeliveryProductById(int id) {
+	public DeliveryProduct getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		DeliveryProduct deliveryProduct = null;
@@ -98,7 +98,7 @@ public class DeliveryProductsDAO {
 	}
 	
 	//get all method	
-	public List<DeliveryProduct> getAllDeliveryProducts(){
+	public List<DeliveryProduct> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

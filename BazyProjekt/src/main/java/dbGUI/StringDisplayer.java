@@ -1,10 +1,14 @@
 package dbGUI;
 
+import java.util.List;
+
 import javax.swing.JTextArea;
+
+import entity.Employee;
 
 public class StringDisplayer {
 	private JTextArea myArea;
-	private String[] sArray;
+	private List<?> myList;
 	private int sLen;
 	private int current;
 
@@ -16,9 +20,9 @@ public class StringDisplayer {
 		sLen=0;
 	}
 	
-	public void setStringArray(String[] sArray) {
-		this.sArray=sArray;
-		this.sLen=sArray.length;
+	public void setStringArray(List<?> list) {
+		this.myList=list;
+		this.sLen=list.size();
 		current=0;
 	}
 	
@@ -28,9 +32,10 @@ public class StringDisplayer {
 
 		while(i<currentMax) {
 			if (i==current)
-				myArea.setText(sArray[i++]);
+				myArea.setText(myList.get(i).toString());
 			else
-			myArea.setText(myArea.getText()+"\n"+sArray[i++]);
+			myArea.setText(myArea.getText()+"\n"+myList.get(i).toString());
+			i++;
 		}
 	}
 

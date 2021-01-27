@@ -10,23 +10,22 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import entity.SaleByDay;
-
+import login.VerifyLogin;
 import util.HibernateUtil;
 
-public class SaleByDayDAO {
+public class SaleByDayDAO implements interfaceDAO{
 
 
 	//add method
-	public void addSaleByDay(SaleByDay saleByDay) {
+	public void addObject(Object saleByDay) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory =HibernateUtil.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
 		try {
 			
-		
 			transaction = currentSession.beginTransaction();
-			currentSession.save(saleByDay);
+			currentSession.save((SaleByDay)saleByDay);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -42,7 +41,7 @@ public class SaleByDayDAO {
 	}
 	
 	//update method
-	public void updateSaleByDay(SaleByDay saleByDay) {
+	public void updateObject(Object saleByDay) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -51,7 +50,7 @@ public class SaleByDayDAO {
 		try {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(saleByDay);
+			currentSession.saveOrUpdate((SaleByDay)saleByDay);
 			transaction.commit();
 			
 		} catch(Exception ex) {
@@ -68,7 +67,7 @@ public class SaleByDayDAO {
 	}
 	
 	//delete method
-	public void deleteSaleByDay(LocalDate date) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -77,7 +76,7 @@ public class SaleByDayDAO {
 		try {
 			
 			transaction = currentSession.beginTransaction();
-			saleByDay =currentSession.get(SaleByDay.class, date);
+			saleByDay =currentSession.get(SaleByDay.class, id);
 			currentSession.delete(saleByDay);
 			transaction.commit();
 		} catch(Exception ex) {
@@ -94,7 +93,7 @@ public class SaleByDayDAO {
 	}
 	
 	//getter by date
-	public SaleByDay getSaleByDay(LocalDate date) {
+	public SaleByDay getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -103,7 +102,7 @@ public class SaleByDayDAO {
 		try {
 			
 			transaction = currentSession.beginTransaction();
-			saleByDay = currentSession.get(SaleByDay.class, date);
+			saleByDay = currentSession.get(SaleByDay.class, id);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -116,7 +115,7 @@ public class SaleByDayDAO {
 	}
 	
 	//get all method
-	public List<SaleByDay> getSalesByDay(){
+	public List<SaleByDay> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

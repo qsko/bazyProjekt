@@ -8,13 +8,14 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import entity.Account;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
-public class AccountDAO {
+public class AccountDAO implements interfaceDAO{
 
 	
 	//add method
-	public void addAccount(Account account) {
+	public void addObject(Object account) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -22,7 +23,7 @@ public class AccountDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.save(account);
+			currentSession.save((Account)account);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -34,8 +35,7 @@ public class AccountDAO {
 	}
 	
 	//update method
-	public void updateAccount(Account account) {
-		
+	public void updateObject(Object account) {
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -43,7 +43,7 @@ public class AccountDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate(account);
+			currentSession.saveOrUpdate((Account)account);
 			transaction.commit();
 		} catch(Exception ex) {
 		    //error occured rollback
@@ -55,7 +55,7 @@ public class AccountDAO {
 	}
 	
 	//delete method
-	public void deleteAccount(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Account account = null;
@@ -75,7 +75,7 @@ public class AccountDAO {
 	}
 	
 	//getter by id
-	public Account getAccountById(int id) {
+	public Object getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Account account = null;
@@ -95,7 +95,7 @@ public class AccountDAO {
 	}
 	
 	//get all method
-	public List<Account> getAccounts(){
+	public List<Account> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

@@ -13,9 +13,9 @@ import entity.Invoice;
 import enums.InvoiceType;
 import util.HibernateUtil;
 
-public class InvoiceDAO {
+public class InvoiceDAO implements interfaceDAO{
 	//add method
-	public void addInvoice(Invoice invoice) {
+	public void addObject(Object invoice) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Transaction transaction = null;
@@ -23,7 +23,7 @@ public class InvoiceDAO {
 		try (Session currentSession = sessionFactory.getCurrentSession()){
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.save(invoice);
+			currentSession.save((Invoice)invoice);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -35,7 +35,7 @@ public class InvoiceDAO {
 	}
 	
 	//update method
-	public void updateInvoice(Invoice invoice) {
+	public void updateObject(Object invoice) {
 		
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -44,7 +44,7 @@ public class InvoiceDAO {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			currentSession.beginTransaction();
-			currentSession.saveOrUpdate(invoice);
+			currentSession.saveOrUpdate((Invoice)invoice);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -56,7 +56,7 @@ public class InvoiceDAO {
 	}
 	
 	//delete method
-	public void deleteInvoice(int id) {
+	public void removeObject(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Invoice invoice = null;
@@ -77,7 +77,7 @@ public class InvoiceDAO {
 	}
 	
 	//getter by id
-	public Invoice getInvoiceById(int id) {
+	public Invoice getObjectById(int id) {
 		
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Invoice invoice = null;
@@ -98,7 +98,7 @@ public class InvoiceDAO {
 	}
 	
 	//get all method
-	public List<Invoice> getEmployees(){
+	public List<Invoice> getObjectList(){
 	
 		// get session
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
