@@ -1,6 +1,7 @@
 package dbIntegration;
 
 import java.awt.GridLayout;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,15 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import DAO.interfaceDAO;
-import dbGUI.DatabaseFrame;
+import dbGUI.DatabaseGUI;
 
 public class TableFrame {
 	private JFrame myFrame;
-	DatabaseFrame masterFrame;
+	DatabaseGUI masterFrame;
 	
-	public TableFrame(DatabaseFrame masterFrame) {
+	public TableFrame(DatabaseGUI masterFrame) {
 		this.masterFrame=masterFrame;
-
+		masterFrame.sendMessage("Select the desired Table in popup window.");
 		myFrame = new JFrame("Choose a table");
 
 		myFrame.setLayout(new GridLayout(11,1));
@@ -28,7 +29,8 @@ public class TableFrame {
 			myButton.addActionListener(myActionListener);
 			myFrame.add(myButton);
 		}
-		myFrame.setSize(100,400);
+		myFrame.setSize(140,400);
+		myFrame.setLocation(MouseInfo.getPointerInfo().getLocation());
 		myFrame.setVisible(true);
 	}
 	
@@ -49,6 +51,7 @@ public class TableFrame {
 					}
 					masterFrame.myStringDisplayer.displayN();
 					masterFrame.sendMessage("Showing table "+t.name());
+					masterFrame.setCurrentTable(t);
 					return;
 				}
 			}

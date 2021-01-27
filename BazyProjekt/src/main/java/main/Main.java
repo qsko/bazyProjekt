@@ -29,35 +29,33 @@ public class Main {
 	 	employee.setSurname("pracownik");
 	 	EmployeeDAO employeeDao= new EmployeeDAO();
 	 	employeeDao.addObject(employee);
-//	 	
-//	 	Employee employee2 = new Employee();
-//	 	employee2.setName("nowy2");
-//	 	employee2.setSurname("pracownik2");	 	
-//	 	employeeDao.addEmployee(employee2);
-//		
-//		
-//		Account account = new Account();
-//		account.setLogin("nowypracownik2");
-//		account.setPassword("aaa2");
-//		account.setEmployee(employee2);
-//		AccountDAO accountDao = new AccountDAO();
-//		accountDao.addAccount(account);
-//		
+	 	
+	 	Employee employee2 = new Employee();
+	 	employee2.setName("nowy2");
+	 	employee2.setSurname("pracownik2");	 	
+	 	employeeDao.addObject(employee2);
 		
-// 		ProductDAO productDao = new ProductDAO();
-// 		Product product = new Product("jablko2",1,1,PriceType.unit, Is_18.no);
-// 		
-// 		productDao.addProduct(product);
-// 		
-// 		Delivery delivery = new Delivery(LocalDateTime.now(),Status.realised,"aaa");
-// 		DeliveryDAO deliveryDao = new DeliveryDAO();
-// 		deliveryDao.addDelivery(delivery);
-// 		
-// 		DeliveryProduct deliveryProduct = new DeliveryProduct(1);
-// 		deliveryProduct.setProduct_id(product);
-// 		deliveryProduct.setDelivery_id(delivery);
-// 		DeliveryProductsDAO  dpdao = new DeliveryProductsDAO();
-//		dpdao.addDeliveryProduct(deliveryProduct);
+		Account account = new Account();
+		account.setLogin("nowypracownik2");
+		account.setPassword("aaa2");
+		account.setEmployee(employee2);
+		AccountDAO accountDao = new AccountDAO();
+		accountDao.addObject(account);
+		
+ 		ProductDAO productDao = new ProductDAO();
+ 		Product product = new Product("jablko2",1,1,PriceType.unit, Is_18.no);
+ 		
+ 		productDao.addObject(product);
+ 		
+ 		Delivery delivery = new Delivery(LocalDateTime.now(),Status.realised,"aaa");
+ 		DeliveryDAO deliveryDao = new DeliveryDAO();
+ 		deliveryDao.addObject(delivery);
+ 		
+ 		DeliveryProduct deliveryProduct = new DeliveryProduct(1);
+ 		deliveryProduct.setProduct(product);
+ 		deliveryProduct.setDelivery(delivery);
+ 		DeliveryProductsDAO  dpdao = new DeliveryProductsDAO();
+		dpdao.addObject(deliveryProduct);
 		
 		
 		

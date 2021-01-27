@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import dbIntegration.TableFrame;
 
 public class DBFrameListener implements ActionListener{
-	private DatabaseFrame dbFrame;
+	private DatabaseGUI dbFrame;
 
-	public DBFrameListener(DatabaseFrame dbFrame) {
+	public DBFrameListener(DatabaseGUI dbFrame) {
 		this.dbFrame=dbFrame;
 	}
 

@@ -13,9 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class DBFrameBuilder {
-	private DatabaseFrame dbFrame;
+	private DatabaseGUI dbFrame;
 	
-	public DBFrameBuilder(DatabaseFrame dataBaseFrame) {
+	public DBFrameBuilder(DatabaseGUI dataBaseFrame) {
 		this.dbFrame=dataBaseFrame;
 	}
 	
@@ -40,7 +40,7 @@ public class DBFrameBuilder {
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		dbFrame.actionPanel.setMinimumSize(new Dimension(200, 300));
 		dbFrame.actionPanel.setMaximumSize(new Dimension(200, 300));
-		dbFrame.actionPanel.setBackground(DatabaseFrame.appColor1);
+		dbFrame.actionPanel.setBackground(DatabaseGUI.appColor1);
 
 		JButton addRecord = new JButton("Add");
 		addRecord.addActionListener(dbFrame.myListener);
@@ -72,7 +72,7 @@ public class DBFrameBuilder {
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder("Information"),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		dbFrame.infoPanel.setBackground(DatabaseFrame.appColor1);
+		dbFrame.infoPanel.setBackground(DatabaseGUI.appColor1);
 		dbFrame.infoPanel.setBackground(Color.WHITE);
 		
 		dbFrame.infoPanel.initLabel();
@@ -81,7 +81,7 @@ public class DBFrameBuilder {
 	private JScrollPane buildScrollPane() {
 		JTextArea dataArea = new JTextArea();
 		dataArea.setEditable(false);
-		dataArea.setFont(DatabaseFrame.myFont1);
+		dataArea.setFont(DatabaseGUI.myFont1);
 		
 		dbFrame.myStringDisplayer=new StringDisplayer(dataArea);
 		
@@ -92,7 +92,7 @@ public class DBFrameBuilder {
 		dbFrame.movePanel = new MyMovePanel();
 		dbFrame.movePanel.setLayout(new GridLayout(1,2));
 		dbFrame.movePanel.setBorder(BorderFactory.createTitledBorder(""));
-		dbFrame.movePanel.setBackground(DatabaseFrame.appColor1);
+		dbFrame.movePanel.setBackground(DatabaseGUI.appColor1);
 		dbFrame.movePanel.setMaximumSize(new Dimension(800, 50));
 		
 		dbFrame.movePanel.moreLeft=new JButton("<<");
@@ -104,7 +104,7 @@ public class DBFrameBuilder {
 		JPanel movePanelLeft=new JPanel();
 		movePanelLeft.setLayout(new GridLayout(1,1));
 		movePanelLeft.add(dbFrame.movePanel.getNewLabel());
-		movePanelLeft.setBackground(DatabaseFrame.appColor1);
+		movePanelLeft.setBackground(DatabaseGUI.appColor1);
 		
 		JPanel movePanelRight=new JPanel();
 		movePanelRight.setLayout(new GridLayout(1,5));
@@ -119,7 +119,7 @@ public class DBFrameBuilder {
 		movePanelRight.add(Box.createRigidArea(new Dimension(0,0)));
 		movePanelRight.add(dbFrame.movePanel.moreLeft);
 		movePanelRight.add(dbFrame.movePanel.moreRight);
-		movePanelRight.setBackground(DatabaseFrame.appColor1);
+		movePanelRight.setBackground(DatabaseGUI.appColor1);
 		
 		dbFrame.movePanel.add(movePanelLeft);
 		dbFrame.movePanel.add(movePanelRight);
@@ -132,7 +132,7 @@ public class DBFrameBuilder {
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder("Stonka Database"),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		dbFrame.dataPanel.setBackground(DatabaseFrame.appColor1);
+		dbFrame.dataPanel.setBackground(DatabaseGUI.appColor1);
 		
 		dbFrame.dataPanel.add(infoPanel);
 		dbFrame.dataPanel.add(Box.createRigidArea(new Dimension(0,10)));
@@ -149,7 +149,7 @@ public class DBFrameBuilder {
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		dbFrame.masterPanel.setBackground(DatabaseFrame.appColor1);
+		dbFrame.masterPanel.setBackground(DatabaseGUI.appColor1);
 		dbFrame.masterPanel.add(actionPanel);
 		dbFrame.masterPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		dbFrame.masterPanel.add(dataPanel);

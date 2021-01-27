@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dbGUI.DatabaseFrame;
+import dbGUI.DatabaseGUI;
 import login.VerifyLogin;
 
 public class LoginFrame {
@@ -110,7 +110,7 @@ public class LoginFrame {
 				
 				myFrame.setVisible(false);
 				myFrame.dispose();
-				new DatabaseFrame("Welcome to Stonka database! Logged in as "+login+".");
+				new DatabaseGUI("Welcome to Stonka database! Logged in as "+login+".");
 			}
 		}
 	}

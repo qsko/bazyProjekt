@@ -24,9 +24,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import DAO.EmployeeDAO;
+import dbIntegration.Tables;
 import entity.Employee;
 
-public class DatabaseFrame {
+public class DatabaseGUI {
 	private JFrame myFrame;
 
 	/**Panel mieszczacy wszystkie inne panele*/
@@ -42,6 +43,8 @@ public class DatabaseFrame {
 	/**Panel w prawym dolnym rogu zawierajacy przyciski*/
 	MyMovePanel movePanel;
 	
+	private Tables currentTable = null;
+	
 	public StringDisplayer myStringDisplayer;
 	
 	public DBFrameListener myListener;
@@ -55,7 +58,7 @@ public class DatabaseFrame {
 			"frame","and","label","this","is","a","test","String","lenght","undefined","see","if","it","fits","inside","the",
 			"frame","and","label"};
 
-	public DatabaseFrame(String welcomeMessage) {
+	public DatabaseGUI(String welcomeMessage) {
 		myListener = new DBFrameListener(this);
 		new DBFrameBuilder(this).buildAllPanels();
 		
@@ -68,9 +71,7 @@ public class DatabaseFrame {
 		
 		if(welcomeMessage!=null)
 				sendMessage(welcomeMessage);
-		
-		EmployeeDAO edao = new EmployeeDAO();
-		displayStringArray(edao.getObjectList());
+
 	}
 	
 	/**Funkcja wysyla zwykla wiadomosc w prawym, gornym rogu*/
@@ -106,4 +107,13 @@ public class DatabaseFrame {
 		
 		movePanel.displayMessage("Displaying: "+(myStringDisplayer.getCurrent()+1)+"-"+myStringDisplayer.getCurrentMax()+"/"+myStringDisplayer.getSLen());
 	}
+	
+	public void setCurrentTable(Tables t) {
+		this.currentTable=t;
+	}
+	
+	public Tables getCurrentTable() {
+		return currentTable;
+	}
+	
 }
