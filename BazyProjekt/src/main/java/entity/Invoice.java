@@ -1,5 +1,6 @@
 package entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -28,6 +29,13 @@ public class Invoice {
 		super();
 		this.nip = nip;
 		this.date = date;
+		this.type = type;
+	}
+	
+	public Invoice(int nip, InvoiceType type) {
+		super();
+		this.nip = nip;
+		this.date = LocalDateTime.now();
 		this.type = type;
 	}
 	

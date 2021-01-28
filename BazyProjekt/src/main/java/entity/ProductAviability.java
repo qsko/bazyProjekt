@@ -36,8 +36,13 @@ public class ProductAviability {
 		this.shopAmount = shopAmount;
 		this.warehouseAmount = warehouseAmount;
 	}
-
-
+	
+	public ProductAviability(Product product, int shopAmount, int warehouseAmount) {
+		super();
+		this.prodId=product;
+		this.shopAmount = shopAmount;
+		this.warehouseAmount = warehouseAmount;
+	}
 
 	@Override
 	public String toString() {

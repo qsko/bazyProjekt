@@ -3,6 +3,7 @@ package dbGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import dbIntegration.AddFrame;
 import dbIntegration.TableFrame;
 
 public class DBFrameListener implements ActionListener{
@@ -35,8 +36,12 @@ public class DBFrameListener implements ActionListener{
 			dbFrame.checkConstrains();
 		}
 		else if (e.getActionCommand().equals("Add")){
-			//TODO
-			dbFrame.sendErrorMessage("TODO Add");
+			if (dbFrame.getCurrentTable()!=null) {
+				new AddFrame(dbFrame);
+				dbFrame.sendMessage("Adding new object of type "+dbFrame.getCurrentTable().name());
+			}
+			else
+				dbFrame.sendErrorMessage("No table selected!");
 		}
 		else if (e.getActionCommand().equals("Delete")){
 			//TODO
