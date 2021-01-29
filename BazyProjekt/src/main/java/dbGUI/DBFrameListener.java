@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import dbIntegration.AddFrame;
+import dbIntegration.QueryFrame;
 import dbIntegration.TableFrame;
 
 public class DBFrameListener implements ActionListener{
@@ -56,8 +57,12 @@ public class DBFrameListener implements ActionListener{
 			dbFrame.sendMessage("TODO Backup");
 		}
 		else if (e.getActionCommand().equals("Query")){
-			//TODO
-			dbFrame.sendMessage("TODO Query");
+			if (dbFrame.getCurrentTable()!=null) {
+				new QueryFrame(dbFrame);
+				dbFrame.sendMessage("Creating query on table "+dbFrame.getCurrentTable().name());
+			}
+			else
+				dbFrame.sendErrorMessage("No table selected!");
 		}
 	}
 }

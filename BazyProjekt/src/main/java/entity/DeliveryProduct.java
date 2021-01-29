@@ -36,7 +36,7 @@ public class DeliveryProduct {
 
 	@Override
 	public String toString() {
-		return "DeliveryProduct [id=" + id + ", amount=" + amount + "]";
+		return "DeliveryProduct [id=" + id + ", delivery_id=" + delivery.getId() + ", product_id=" + product.getId() + ", amount=" + amount + "]";
 	}
 
 

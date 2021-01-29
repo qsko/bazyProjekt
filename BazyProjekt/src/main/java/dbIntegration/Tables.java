@@ -14,8 +14,9 @@ public enum Tables {
 		}
 		@Override
 		public String[] getTablesNames() {
-			String[] names = new String [2];
+			String[] names = new String [3];
 			int i=0;
+			names[i++]="employee_id";
 			names[i++]="login";
 			names[i++]="password";
 			return names;
@@ -32,8 +33,9 @@ public enum Tables {
 		}
 		@Override
 		public String[] getTablesNames() {
-			String[] names = new String [5];
+			String[] names = new String [6];
 			int i=0;
+			names[i++]="employee_id";
 			names[i++]="beginning";
 			names[i++]="ending";
 			names[i++]="type";
@@ -74,7 +76,8 @@ public enum Tables {
 		public String[] getTablesNames() {
 			String[] names = new String [2];
 			int i=0;
-			names[i++]="id";
+			names[i++]="delivery_id";
+			names[i++]="product_id";
 			names[i++]="amount";
 			return names;
 		}

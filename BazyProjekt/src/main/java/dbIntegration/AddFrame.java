@@ -1,8 +1,11 @@
 package dbIntegration;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +19,8 @@ import util.HibernateUtil;
 public class AddFrame {
 	private JFrame myFrame;
 	private DatabaseGUI masterGUI;
+	private JTextArea [] myTextAreas;
+	private int length;
 	
 	public AddFrame(DatabaseGUI masterGUI) {
 		this.masterGUI=masterGUI;
@@ -32,36 +37,58 @@ public class AddFrame {
 		
 		
 		String[] variableNames = masterGUI.getCurrentTable().getTablesNames();
+		length=variableNames.length;
 		
+		JPanel midPanel=new JPanel();
 		JPanel bottomPanel=new JPanel();
 		JPanel leftPanel=new JPanel();
 		JPanel rightPanel=new JPanel();
 		
-		leftPanel.setLayout(new GridLayout(variableNames.length,1));
+		leftPanel.setLayout(new GridLayout(length,1));
 		leftPanel.setSize(50, 100);
-		rightPanel.setLayout(new GridLayout(variableNames.length,1));
+		rightPanel.setLayout(new GridLayout(length,1));
 		
 		for(String s: variableNames) {
 			JLabel myLabel = new JLabel(s);
 			leftPanel.add(myLabel);
 		}
 		
-		JTextArea [] myTextAreas = new JTextArea[variableNames.length];
+		myTextAreas = new JTextArea[length];
 		
-		for(JTextArea ja: myTextAreas) {
-			ja = new JTextArea();
-			rightPanel.add(ja);
+		for(int i=0;i<length;i++) {
+			myTextAreas[i] = new JTextArea();
+			rightPanel.add(myTextAreas[i]);
 		}
 		
-		bottomPanel.setLayout(new BoxLayout(bottomPanel,BoxLayout.LINE_AXIS));
-		bottomPanel.add(leftPanel);
-		bottomPanel.add(rightPanel);
+		midPanel.setLayout(new BoxLayout(midPanel,BoxLayout.LINE_AXIS));
+		midPanel.add(leftPanel);
+		midPanel.add(rightPanel);
+		
+		JButton addButton = new JButton("ADD");
+		addButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getActionCommand().equals("ADD")) {
+					String[] args=new String[length];
+					for(int i=0;i<length;i++) {
+						args[i]=myTextAreas[i].getText();
+					}
+					new ProcessAddOperation(masterGUI, args);
+					myFrame.setVisible(false);
+					myFrame.dispose();
+				}	
+			}
+		});
+		bottomPanel.add(addButton);
+		
 		
 		myFrame.add(topPanel);
+		myFrame.add(midPanel);
 		myFrame.add(bottomPanel);
 	
 		myFrame.setSize(400,200);
 		myFrame.setVisible(true);
-		
 	}
+
 }
