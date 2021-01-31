@@ -21,6 +21,10 @@ public enum Tables {
 			names[i++]="password";
 			return names;
 		}
+		@Override
+		public String getExactTableName() {
+			return "Accounts";
+		}
 	},
 	Contract {
 		@Override
@@ -36,12 +40,16 @@ public enum Tables {
 			String[] names = new String [6];
 			int i=0;
 			names[i++]="employee_id";
-			names[i++]="beginning";
-			names[i++]="ending";
+			names[i++]="beginning (YYYY-MM-DD)";
+			names[i++]="ending (YYYY-MM-DD)";
 			names[i++]="type";
 			names[i++]="salary";
 			names[i++]="position";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Contracts";
 		}
 	},
 	Delivery {
@@ -57,10 +65,14 @@ public enum Tables {
 		public String[] getTablesNames() {
 			String[] names = new String [3];
 			int i=0;
-			names[i++]="plannedDate";
+			names[i++]="plannedDate (yyyy-MM-ddThh:mm:ss)";
 			names[i++]="status";
 			names[i++]="supplier";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Deliveries";
 		}
 	},
 	DeliveryProducts {
@@ -74,12 +86,16 @@ public enum Tables {
 		}
 		@Override
 		public String[] getTablesNames() {
-			String[] names = new String [2];
+			String[] names = new String [3];
 			int i=0;
 			names[i++]="delivery_id";
 			names[i++]="product_id";
 			names[i++]="amount";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Delivery_Products";
 		}
 	},
 	Employee {
@@ -99,6 +115,10 @@ public enum Tables {
 			names[i++]="surname";
 			return names;
 		}
+		@Override
+		public String getExactTableName() {
+			return "Employees";
+		}
 	},
 	Invoice {
 		@Override
@@ -116,6 +136,10 @@ public enum Tables {
 			names[i++]="nip";
 			names[i++]="type";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Invoices";
 		}
 	},
 	InvoiceProduct {
@@ -135,6 +159,10 @@ public enum Tables {
 			names[i++]="product_id";
 			names[i++]="amount";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Invoice_Products";
 		}
 	},
 	Product {
@@ -157,6 +185,10 @@ public enum Tables {
 			names[i++]="is_18+";
 			return names;
 		}
+		@Override
+		public String getExactTableName() {
+			return "Products";
+		}
 	},
 	ProductAviability {
 		@Override
@@ -176,6 +208,10 @@ public enum Tables {
 			names[i++]="warehouseAmount";
 			return names;
 		}
+		@Override
+		public String getExactTableName() {
+			return "Products_Aviability";
+		}
 	},
 	SaleByDay {
 		@Override
@@ -193,6 +229,10 @@ public enum Tables {
 			names[i++]="amount";
 			return names;
 		}
+		@Override
+		public String getExactTableName() {
+			return "Sales_by_day";
+		}
 	},
 	Schedule {
 		@Override
@@ -208,13 +248,18 @@ public enum Tables {
 			String[] names = new String [3];
 			int i=0;
 			names[i++]="employee_id";
-			names[i++]="beginning";
-			names[i++]="ending";
+			names[i++]="beginning (yyyy-MM-ddThh:mm:ss)";
+			names[i++]="ending (yyyy-MM-ddThh:mm:ss)";
 			return names;
+		}
+		@Override
+		public String getExactTableName() {
+			return "Schedule";
 		}
 	};
 	
 	public abstract interfaceDAO getDAO();
 	public abstract Class<?> getTableClass();
 	public abstract String[] getTablesNames();
+	public abstract String getExactTableName();
 }

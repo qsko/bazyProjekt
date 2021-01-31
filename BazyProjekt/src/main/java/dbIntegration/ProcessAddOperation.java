@@ -5,6 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 
 import dbGUI.DatabaseGUI;
 import entity.Account;
@@ -17,6 +21,7 @@ import entity.InvoiceProduct;
 import entity.Product;
 import entity.ProductAviability;
 import entity.SaleByDay;
+import entity.Schedule;
 
 public class ProcessAddOperation {
 	DatabaseGUI masterFrame;
@@ -79,7 +84,6 @@ public class ProcessAddOperation {
 		Employee oE = (Employee) Tables.Employee.getDAO().getObjectById(eid);
 		
 		if (oE!=null) {
-			//TODO md5
 			String hashtext;
 			
 			try {
@@ -98,6 +102,8 @@ public class ProcessAddOperation {
 			Account nA = new Account(vars[1], hashtext);
 			nA.setEmployee(oE);
 			Tables.Account.getDAO().addObject(nA);
+			masterFrame.sendMessage("Added new Account.");
+			displayTable();
 		}
 		else {
 			masterFrame.sendErrorMessage("Error when adding object: No such Employee");
@@ -153,11 +159,37 @@ public class ProcessAddOperation {
 		Contract nC = new Contract(ld1,ld2,ect,salary,ep);
 		nC.setEmployee(oE);		
 		Tables.Employee.getDAO().addObject(nC);
+		masterFrame.sendMessage("Added new Contract.");
+		displayTable();
 	}
 	
 	public void addDelivery(String[] vars) {
-		//TODO
-		masterFrame.sendErrorMessage("TODO AddDelivery");
+		LocalDateTime dtime;
+		try {
+			dtime = LocalDateTime.parse(vars[0]);
+		}
+		catch (DateTimeParseException e) {
+			masterFrame.sendErrorMessage("Error when adding object: Wrong date format");
+			return;
+		}
+		
+		enums.Status es = null;
+		for (enums.Status e: enums.Status.values()) {
+			if (e.name().equals(vars[1])) {
+				es = e;
+				break;
+			}
+		}
+		
+		if (es==null) {
+			masterFrame.sendErrorMessage("Error when adding object: No such status");
+			return;
+		}
+		
+		Delivery nD = new Delivery(dtime, es, vars[2]);
+		Tables.Delivery.getDAO().addObject(nD);
+		masterFrame.sendMessage("Added new Delivery.");
+		displayTable();
 	}
 	
 	public void addDeliveryProduct(String[] vars) {
@@ -183,6 +215,8 @@ public class ProcessAddOperation {
 			nDP.setDelivery(oD);
 			nDP.setProduct(oP);
 			Tables.DeliveryProducts.getDAO().addObject(nDP);
+			masterFrame.sendMessage("Added new DeliveryProduct.");
+			displayTable();
 		}
 		else {
 			masterFrame.sendErrorMessage("Error when adding object: No such Delivery or Product.");
@@ -214,6 +248,8 @@ public class ProcessAddOperation {
 		if (it!=null && nip!=0) {
 			Invoice nI = new Invoice(nip,it);
 			Tables.Invoice.getDAO().addObject(nI);
+			masterFrame.sendMessage("Added new Invoice.");
+			displayTable();
 		}
 		else {
 			masterFrame.sendErrorMessage("Error when adding object: No such Invoice type.");
@@ -221,7 +257,6 @@ public class ProcessAddOperation {
 	}
 
 	public void addInvoiceProduct(String[] vars) {
-		//TODO
 		int i_id;
 		int p_id;
 		int n;
@@ -253,6 +288,8 @@ public class ProcessAddOperation {
 		nIP.setProduct(oP);
 		
 		Tables.InvoiceProduct.getDAO().addObject(nIP);
+		masterFrame.sendMessage("Added new InvoiceProduct.");
+		displayTable();
 	}
 
 	public void addProduct(String[] vars) {
@@ -287,6 +324,7 @@ public class ProcessAddOperation {
 			Product nP = new Product(vars[0],weight,price,ept,eie);
 			Tables.Product.getDAO().addObject(nP);
 			masterFrame.sendMessage("Added new Product.");
+			displayTable();
 		}
 		else
 			masterFrame.sendErrorMessage("Error when adding object: Non-existent priceType/is_18");	
@@ -313,6 +351,7 @@ public class ProcessAddOperation {
 			ProductAviability nPA = new ProductAviability(oP,s,w);
 			Tables.ProductAviability.getDAO().addObject(nPA);
 			masterFrame.sendMessage("Added new ProductAviability.");
+			displayTable();
 		}
 		else
 			masterFrame.sendErrorMessage("Error when adding object: No such Product");
@@ -331,10 +370,41 @@ public class ProcessAddOperation {
 		SaleByDay nS = new SaleByDay(n);
 
 		Tables.SaleByDay.getDAO().addObject(nS);
+		displayTable();
 	}
 
 	public void addSchedule(String[] vars) {
-		//TODO
-		masterFrame.sendErrorMessage("TODO AddSchedule");
+		Employee oE = null;
+		try {
+			int n = Integer.parseInt(vars[0]);
+			oE = (Employee) Tables.Employee.getDAO().getObjectById(n);
+			if (oE==null) {
+				masterFrame.sendErrorMessage("Error when adding object: No such employee");
+				return;
+			}
+		}
+		catch (NumberFormatException e) {
+			masterFrame.sendErrorMessage("Error when adding object: Wrong Integer format");
+			return;
+		}
+		LocalDateTime stime1;
+		LocalDateTime stime2;
+		try {
+			stime1 = LocalDateTime.parse(vars[1]);
+			stime2 = LocalDateTime.parse(vars[2]);
+		}
+		catch (DateTimeParseException e) {
+			masterFrame.sendErrorMessage("Error when adding object: Wrong date format");
+			return;
+		}
+		
+		Schedule nS = new Schedule(stime1, stime2);
+		nS.setEmployee_id(oE);
+		Tables.Schedule.getDAO().addObject(nS);
+		displayTable();
+	}
+	
+	public void displayTable() {
+		masterFrame.displayStringArray(masterFrame.getCurrentTable().getDAO().getObjectList());
 	}
 }

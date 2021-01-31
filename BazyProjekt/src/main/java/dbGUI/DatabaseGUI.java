@@ -43,7 +43,7 @@ public class DatabaseGUI {
 	/**Panel w prawym dolnym rogu zawierajacy przyciski*/
 	MyMovePanel movePanel;
 	
-	private Tables currentTable = Tables.Employee;
+	private Tables currentTable;
 	
 	public StringDisplayer myStringDisplayer;
 	

@@ -71,26 +71,6 @@ public class QueryFrame {
 	}
 	
 	private void processQuery(String query) {
-		//TODO
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		List <?> accounts = null;
-		Transaction transaction = null;
-
-		try(Session currentSession = sessionFactory.getCurrentSession()) {
-			//begin transaction
-			transaction = currentSession.beginTransaction();
-			//create query
-			Query<?> myQuery = currentSession.createQuery("select * from " + masterGUI.getCurrentTable().name() + " where " + query,masterGUI.getCurrentTable().getClass());
-			//get result
-			accounts = myQuery.getResultList();
-		
-			transaction.commit();
-		} catch(Exception ex) {
-		    //error occured rollback
-		    if (transaction != null) {
-		        transaction.rollback();
-		    }
-		}
-		//TODO
 	}
+	
 }

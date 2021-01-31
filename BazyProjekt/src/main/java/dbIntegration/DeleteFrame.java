@@ -1,7 +1,6 @@
 package dbIntegration;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -16,18 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import org.hibernate.metadata.ClassMetadata;
-
 import dbGUI.DatabaseGUI;
-import util.HibernateUtil;
 
-public class AddFrame {
+public class DeleteFrame {
 	private JFrame myFrame;
 	private DatabaseGUI masterGUI;
-	private JTextArea [] myTextAreas;
-	private int length;
-	
-	public AddFrame(DatabaseGUI masterGUI) {
+	private JTextArea myTextArea;
+
+	public DeleteFrame(DatabaseGUI masterGUI) {
 		this.masterGUI=masterGUI;
 		buildFrame();
 	}
@@ -39,46 +34,33 @@ public class AddFrame {
 		c.fill=GridBagConstraints.HORIZONTAL;
 		
 		JPanel topPanel=new JPanel();
-		topPanel.add(new JLabel("Adding new entity type: "+masterGUI.getCurrentTable().name()));
+		topPanel.add(new JLabel("Deleting entity type: "+masterGUI.getCurrentTable().name()));
 		topPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		
-		
-		String[] variableNames = masterGUI.getCurrentTable().getTablesNames();
-		length=variableNames.length;
-		
 		JPanel midPanel=new JPanel();
 		JPanel bottomPanel=new JPanel();
 		JPanel leftPanel=new JPanel();
 		JPanel rightPanel=new JPanel();
 		
-		leftPanel.setLayout(new GridLayout(length,1));
-		leftPanel.setSize(50, 100);
+		leftPanel.setLayout(new GridLayout(1,1));
+		leftPanel.setSize(50, 25);
 		leftPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-		rightPanel.setLayout(new GridLayout(length,1));
+		rightPanel.setLayout(new GridLayout(1,1));
 		rightPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		
-		for(String s: variableNames) {
-			JLabel myLabel = new JLabel(s);
-			leftPanel.add(myLabel);
-		}
-		
-		myTextAreas = new JTextArea[length];
-		
-		for(int i=0;i<length;i++) {
-			myTextAreas[i] = new JTextArea();
-			rightPanel.add(myTextAreas[i]);
-		}
-		rightPanel.setPreferredSize(new Dimension(200,25*length));
+
+		leftPanel.add(new JLabel("id"));
+		myTextArea = new JTextArea();
+		rightPanel.add(myTextArea);
+		rightPanel.setPreferredSize(new Dimension(100,25));
 		
 		midPanel.setLayout(new BoxLayout(midPanel,BoxLayout.LINE_AXIS));
 		midPanel.add(leftPanel);
@@ -88,28 +70,33 @@ public class AddFrame {
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		
-		JButton addButton = new JButton("ADD");
-		addButton.addActionListener(new ActionListener() {
+		JButton removeButton = new JButton("DELETE");
+		removeButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (e.getActionCommand().equals("ADD")) {
-					String[] args=new String[length];
-					for(int i=0;i<length;i++) {
-						args[i]=myTextAreas[i].getText();
+				if (e.getActionCommand().equals("DELETE")) {
+					String s = myTextArea.getText();
+					int id;
+					try {
+						id = Integer.parseInt(s);
+						masterGUI.getCurrentTable().getDAO().removeObject(id);
+						masterGUI.sendMessage("Deleted "+masterGUI.getCurrentTable().name() + " with id="+id);
+						masterGUI.displayStringArray(masterGUI.getCurrentTable().getDAO().getObjectList());
 					}
-					new ProcessAddOperation(masterGUI, args);
+					catch(NumberFormatException n) {
+						masterGUI.sendErrorMessage("Error when deleting Object: Wrong id format.");
+					}
 					myFrame.setVisible(false);
 					myFrame.dispose();
 				}	
 			}
 		});
-		bottomPanel.add(addButton);
+		bottomPanel.add(removeButton);
 		bottomPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		
 		
 		c.gridx=0;
 		c.gridy=0;
@@ -117,15 +104,14 @@ public class AddFrame {
 		myFrame.add(topPanel,c);
 
 		c.gridy++;
-		c.ipady=10*length;
+		c.ipady=8;
 		myFrame.add(midPanel,c);
 
 		c.gridy++;
 		c.ipady=0;
 		myFrame.add(bottomPanel,c);
 
-		myFrame.setSize(500,200+30*length);
+		myFrame.setSize(300,200);
 		myFrame.setVisible(true);
 	}
-
 }

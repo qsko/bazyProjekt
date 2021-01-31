@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import dbIntegration.AddFrame;
+import dbIntegration.DeleteFrame;
 import dbIntegration.QueryFrame;
 import dbIntegration.TableFrame;
 
@@ -45,8 +46,12 @@ public class DBFrameListener implements ActionListener{
 				dbFrame.sendErrorMessage("No table selected!");
 		}
 		else if (e.getActionCommand().equals("Delete")){
-			//TODO
-			dbFrame.sendErrorMessage("TODO Delete");
+			if (dbFrame.getCurrentTable()!=null) {
+				new DeleteFrame(dbFrame);
+				dbFrame.sendMessage("Deleting object of type "+dbFrame.getCurrentTable().name());
+			}
+			else
+				dbFrame.sendErrorMessage("No table selected!");
 		}
 		else if (e.getActionCommand().equals("Table")){
 			//TODO
