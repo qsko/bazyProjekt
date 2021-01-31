@@ -6,6 +6,7 @@ import org.hibernate.cfg.beanvalidation.HibernateTraversableResolver;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.type.Type;
 
+import dbIntegration.EntityTypes;
 import dbIntegration.Tables;
 import entity.Account;
 import util.HibernateUtil;
@@ -26,9 +27,9 @@ public class T {
 			System.out.println(t.getName());
 		}*/
 		
-		java.lang.reflect.Field[] f = entity.Account.class.getDeclaredFields();
-		for (Field g: f) {
-			System.out.println(g.toString());
+		EntityTypes[] et = Tables.Account.getTablesTypes();
+		for(EntityTypes e: et) {
+			System.out.println(e.name());
 		}
 	}
 }
