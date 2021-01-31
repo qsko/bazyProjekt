@@ -49,6 +49,15 @@ public class Schedule {
 	public String toString() {
 		return "Schedule [id=" + id + ", beginning=" + beginning + ", ending=" + ending + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(employee.getId());
+		s[2]=String.valueOf(beginning);
+		s[3]=String.valueOf(ending);
+		return s;
+	}
 
 	public int getId() {
 		return id;

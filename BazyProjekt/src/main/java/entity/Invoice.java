@@ -45,6 +45,15 @@ public class Invoice {
 	public String toString() {
 		return "Invoice [id=" + id + ", nip=" + nip + ", date=" + date + ", type=" + type + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(nip);
+		s[2]=String.valueOf(date);
+		s[3]=type.name();
+		return s;
+	}
 
 	@Column(name ="nip")
 	private int nip;

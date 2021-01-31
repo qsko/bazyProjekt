@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import entity. Delivery;
 import enums.Status;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class DeliveryDAO implements interfaceDAO{
@@ -16,7 +17,7 @@ public class DeliveryDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object delivery) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -36,7 +37,7 @@ public class DeliveryDAO implements interfaceDAO{
 	public void updateObject(Object delivery) {
 			
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -56,7 +57,7 @@ public class DeliveryDAO implements interfaceDAO{
 		//delete method
 	public void removeObject(int id) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Delivery delivery = null;
 		Transaction transaction = null;
 
@@ -77,7 +78,7 @@ public class DeliveryDAO implements interfaceDAO{
 	//getter by id
 	public Delivery getObjectById(int id) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Delivery delivery = null;
 		Transaction transaction = null;
 
@@ -99,7 +100,7 @@ public class DeliveryDAO implements interfaceDAO{
 	public List<Delivery> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		List< Delivery> deliveries = null;
 		try (Session currentSession = sessionFactory.getCurrentSession()){

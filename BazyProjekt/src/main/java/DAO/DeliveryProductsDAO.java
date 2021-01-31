@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 
 import entity.Account;
 import entity.DeliveryProduct;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class DeliveryProductsDAO implements interfaceDAO{
@@ -16,7 +17,7 @@ public class DeliveryProductsDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object deliveryProducts) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -37,7 +38,7 @@ public class DeliveryProductsDAO implements interfaceDAO{
 	public void updateObject(Object deliveryProduct) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -57,7 +58,7 @@ public class DeliveryProductsDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		DeliveryProduct deliveryProduct = null;
 		Transaction transaction = null;
 
@@ -78,7 +79,7 @@ public class DeliveryProductsDAO implements interfaceDAO{
 	//getter by id
 	public DeliveryProduct getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		DeliveryProduct deliveryProduct = null;
 		Transaction transaction = null;
 
@@ -101,7 +102,7 @@ public class DeliveryProductsDAO implements interfaceDAO{
 	public List<DeliveryProduct> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		
 		List<DeliveryProduct> deliveryProducts = null;
 		Transaction transaction = null;

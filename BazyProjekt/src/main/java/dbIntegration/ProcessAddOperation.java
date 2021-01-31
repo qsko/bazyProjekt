@@ -18,10 +18,12 @@ import entity.DeliveryProduct;
 import entity.Employee;
 import entity.Invoice;
 import entity.InvoiceProduct;
+import entity.LoginPosition;
 import entity.Product;
 import entity.ProductAviability;
 import entity.SaleByDay;
 import entity.Schedule;
+import enums.Position;
 
 public class ProcessAddOperation {
 	DatabaseGUI masterFrame;
@@ -66,11 +68,29 @@ public class ProcessAddOperation {
 		case Schedule:
 			addSchedule(vars);
 			break;
+		case LoginPosition:
+			addLoginPosition(vars);
 		default:
 			break;
 		};
 	}
 	
+	private void addLoginPosition(String[] vars) {
+		Position p = null;
+		try {
+			p = (Position) EntityTypes.Position.fromString(vars[1]);
+		}
+		catch (Exception e) {
+			masterFrame.sendErrorMessage("Error when adding object: No such position.");
+			return;
+		}
+		
+		LoginPosition lp = new LoginPosition(vars[0],p);
+		Tables.LoginPosition.getDAO().addObject(lp);
+		masterFrame.sendMessage("Added new LoginPosition.");
+		displayTable();
+	}
+
 	public void addAccount(String[] vars) {
 		int eid=0;
 		try {
@@ -405,6 +425,6 @@ public class ProcessAddOperation {
 	}
 	
 	public void displayTable() {
-		masterFrame.displayStringArray(masterFrame.getCurrentTable().getDAO().getObjectList());
+		masterFrame.setNewTable(masterFrame.getCurrentTable().getDAO().getObjectList());
 	}
 }

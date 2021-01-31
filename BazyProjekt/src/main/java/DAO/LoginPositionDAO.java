@@ -7,44 +7,40 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import entity.InvoiceProduct;
+import entity.LoginPosition;
 import entity.ProductAviability;
 import login.VerifyLogin;
-import util.HibernateUtil;
 
-public class ProductAviabilityDAO implements interfaceDAO{
-	//add method
-	public void addObject(Object productAviability) {
-		
+public class LoginPositionDAO implements interfaceDAO{
+
+	@Override
+	public void addObject(Object o) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
-			
+				
 			transaction = currentSession.beginTransaction();
-			currentSession.save((ProductAviability)productAviability);
+			currentSession.save((LoginPosition)o);
 			transaction.commit();
-			
+				
 		}catch(Exception ex) {
-		    //error occured rollback
-		    if (transaction != null) {
-		        transaction.rollback();
-		    }
+			   //error occured rollback
+			   if (transaction != null) {
+			       transaction.rollback();
+			   }
 		}
-		
 	}
-	
-	//update method
-	public void updateObject(Object productAviability) {
-		
 
+	@Override
+	public void updateObject(Object o) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			currentSession.saveOrUpdate((ProductAviability)productAviability);
+			currentSession.saveOrUpdate((LoginPosition)o);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -52,21 +48,19 @@ public class ProductAviabilityDAO implements interfaceDAO{
 		        transaction.rollback();
 		    }
 		}
-
 	}
-	
-	//delete method
+
+	@Override
 	public void removeObject(int id) {
-		
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
-		ProductAviability productAviability = null;
+		LoginPosition o = null;
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			productAviability =currentSession.get(ProductAviability.class, id);
-			currentSession.delete(productAviability);
+			o =currentSession.get(LoginPosition.class, id);
+			currentSession.delete(o);
 			transaction.commit();
 		}catch(Exception ex) {
 		    //error occured rollback
@@ -75,48 +69,46 @@ public class ProductAviabilityDAO implements interfaceDAO{
 		    }
 		}
 	}
-	
-	//getter by id
-	public ProductAviability getObjectById(int id) {
-		
+
+	@Override
+	public LoginPosition getObjectById(int id) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
-		ProductAviability productAviability = null;
+		LoginPosition o = null;
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
 			transaction = currentSession.beginTransaction();
-			productAviability = currentSession.get(ProductAviability.class, id);
+			o = currentSession.get(LoginPosition.class, id);
 			transaction.commit();
 		}finally {
 			sessionFactory.close();
 		}
 		
-		return productAviability;
+		return o;
 	}
-	
-	//get all method
-	public List<ProductAviability> getObjectList(){
-	
+
+	@Override
+	public List<LoginPosition> getObjectList() {
 		// get session
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
-		List<ProductAviability> productsAviability = null;
+		List<LoginPosition> o = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()){
 			
 			transaction = currentSession.beginTransaction();
-			Query<ProductAviability> query = currentSession.createQuery("from ProductAviability", ProductAviability.class);
-			productsAviability = query.getResultList();
-		
+			Query<LoginPosition> query = currentSession.createQuery("from LoginPosition", LoginPosition.class);
+			o = query.getResultList();
 			transaction.commit();
 			
 			
 		}catch(Exception ex) {
+			ex.printStackTrace();
 		    //error occured rollback
 		    if (transaction != null) {
 		        transaction.rollback();
 		    }
 		}
-		return productsAviability;
+		return o;
 	}
 }

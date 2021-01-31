@@ -40,16 +40,14 @@ public class DBFrameListener implements ActionListener{
 		}
 		else if (action.equals("Add")){
 			if (dbFrame.getCurrentTable()!=null) {
-				new AddFrame(dbFrame);
-				dbFrame.sendMessage("Adding new object of type "+dbFrame.getCurrentTable().name());
+				new AddFrameVerification(dbFrame).verify();
 			}
 			else
 				dbFrame.sendErrorMessage("No table selected!");
 		}
 		else if (action.equals("Delete")){
 			if (dbFrame.getCurrentTable()!=null) {
-				new DeleteFrame(dbFrame);
-				dbFrame.sendMessage("Deleting object of type "+dbFrame.getCurrentTable().name());
+				new DeleteFrameVerification(dbFrame).verify();
 			}
 			else
 				dbFrame.sendErrorMessage("No table selected!");
@@ -57,6 +55,7 @@ public class DBFrameListener implements ActionListener{
 		else if (action.equals("Table")){
 			new TableFrame(dbFrame);
 		}
+
 		else if (action.equals("Backup")){
 			//TODO
 			dbFrame.sendMessage("TODO Backup");
@@ -70,7 +69,10 @@ public class DBFrameListener implements ActionListener{
 				dbFrame.sendErrorMessage("No table selected!");
 		}
 		else if (action.equals("Refresh")) {
-			dbFrame.displayStringArray(dbFrame.getCurrentTable().getDAO().getObjectList());
+			if (dbFrame.getCurrentTable()!=null)
+				dbFrame.setNewTable(dbFrame.getCurrentTable().getDAO().getObjectList());
+			else
+				dbFrame.sendErrorMessage("No table selected!");
 		}
 	}
 }

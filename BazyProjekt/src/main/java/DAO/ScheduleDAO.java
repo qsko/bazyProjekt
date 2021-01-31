@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import entity.Schedule;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class ScheduleDAO implements interfaceDAO{
@@ -14,7 +15,7 @@ public class ScheduleDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object schedule) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
@@ -35,7 +36,7 @@ public class ScheduleDAO implements interfaceDAO{
 	public void updateObject(Object schedule) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
@@ -55,7 +56,7 @@ public class ScheduleDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		Schedule schedule = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -75,7 +76,7 @@ public class ScheduleDAO implements interfaceDAO{
 	//getter by date
 	public Schedule getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		Schedule schedule = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -97,7 +98,7 @@ public class ScheduleDAO implements interfaceDAO{
 	public List<Schedule> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		List<Schedule> schedules = null;
 		

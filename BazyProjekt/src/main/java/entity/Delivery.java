@@ -50,6 +50,15 @@ public class Delivery {
 				+ "]";
 	}
 
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(plannedDate);
+		s[2]=status.name();
+		s[3]=supplier;
+		return s;
+	}
+
 	public int getId() {
 		return id;
 	}

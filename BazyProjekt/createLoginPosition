@@ -1,0 +1,8 @@
+USE db;
+drop table if exists LoginPosition;
+create table LoginPosition(
+	id int auto_increment,
+	login varchar(120),
+	position enum("admin","owner", "manager","worker") DEFAULT("worker"),
+	primary key (id)
+);

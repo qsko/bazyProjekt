@@ -12,6 +12,7 @@ import entity.Account;
 import entity.Contract;
 import enums.ContractType;
 import enums.Position;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class ContractDAO implements interfaceDAO{
@@ -19,7 +20,7 @@ public class ContractDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object contract) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -41,7 +42,7 @@ public class ContractDAO implements interfaceDAO{
 	public void updateObject(Object contract) {
 			
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -61,7 +62,7 @@ public class ContractDAO implements interfaceDAO{
 		//delete method
 	public void removeObject(int id) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Contract contract = null;
 		Transaction transaction = null;
 
@@ -82,7 +83,7 @@ public class ContractDAO implements interfaceDAO{
 	//getter by id
 	public Contract getObjectById(int id) {
 			
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Contract contract = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -104,7 +105,7 @@ public class ContractDAO implements interfaceDAO{
 	public List<Contract> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		List<Contract> contracts = null; 
 		try (Session currentSession = sessionFactory.getCurrentSession()){

@@ -17,7 +17,7 @@ public class EmployeeDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object employee){
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -38,7 +38,7 @@ public class EmployeeDAO implements interfaceDAO{
 	public void updateObject(Object employee) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -58,7 +58,7 @@ public class EmployeeDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Employee employee = null;
 		Transaction transaction = null;
 
@@ -79,7 +79,7 @@ public class EmployeeDAO implements interfaceDAO{
 	//getter by id
 	public Employee getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Employee employee = null;
 		Transaction transaction = null;
 
@@ -101,7 +101,7 @@ public class EmployeeDAO implements interfaceDAO{
 	public List<?> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<Employee> employees = null;
 		Transaction transaction = null;
 		

@@ -11,6 +11,7 @@ import entity.Product;
 import entity.ProductAviability;
 import enums.Is_18;
 import enums.PriceType;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class ProductDAO implements interfaceDAO{
@@ -19,7 +20,7 @@ public class ProductDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object product) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			
@@ -40,7 +41,7 @@ public class ProductDAO implements interfaceDAO{
 	public void updateObject(Object product) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -60,7 +61,7 @@ public class ProductDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Product product = null;
 		Transaction transaction = null;
 
@@ -78,7 +79,7 @@ public class ProductDAO implements interfaceDAO{
 	//getter by id
 	public Product getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Product product = null;
 		Transaction transaction = null;
 
@@ -101,7 +102,7 @@ public class ProductDAO implements interfaceDAO{
 	public List<Product> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<Product> products = null;
 		Transaction transaction = null;
 

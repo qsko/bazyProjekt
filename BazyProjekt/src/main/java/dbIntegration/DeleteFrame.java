@@ -82,7 +82,7 @@ public class DeleteFrame {
 						id = Integer.parseInt(s);
 						masterGUI.getCurrentTable().getDAO().removeObject(id);
 						masterGUI.sendMessage("Deleted "+masterGUI.getCurrentTable().name() + " with id="+id);
-						masterGUI.displayStringArray(masterGUI.getCurrentTable().getDAO().getObjectList());
+						masterGUI.setNewTable(masterGUI.getCurrentTable().getDAO().getObjectList());
 					}
 					catch(NumberFormatException n) {
 						masterGUI.sendErrorMessage("Error when deleting Object: Wrong id format.");

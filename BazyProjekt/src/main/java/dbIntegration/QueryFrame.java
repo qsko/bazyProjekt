@@ -30,6 +30,7 @@ import com.mysql.cj.jdbc.integration.c3p0.MysqlConnectionTester;
 
 import dbGUI.DatabaseGUI;
 import entity.Account;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class QueryFrame {
@@ -54,6 +55,7 @@ public class QueryFrame {
 		
 		selectedOperation=null;
 		selectedColumn=null;
+		selectedType=null;
 		selectedElements=new ArrayList<QueryElement>();
 		
 		queryFrame = new JFrame("Create Query");
@@ -148,7 +150,7 @@ public class QueryFrame {
 	
 	private String generateQueryString() {
 		String stmt = "from " + masterGUI.getCurrentTable().getTableClass().getSimpleName();
-		
+
 		if (selectedElements.size()!=0) {
 			stmt+=" where ";
 		}
@@ -172,7 +174,7 @@ public class QueryFrame {
 	}
 	
 	private List<?> ProcessQuery(String queryS) {
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<?> result = null;
 		Transaction transaction = null;
 		
@@ -183,7 +185,15 @@ public class QueryFrame {
 			int i=0;
 			for(QueryElement qe: selectedElements) {
 				String var = "var" + String.valueOf(i++);
-				query.setParameter(var,qe.getVariable());
+				
+				try {
+					Object o = qe.getType().fromString(qe.getVariable());
+					query.setParameter(var,o);
+				}
+				catch (Exception e) {
+					masterGUI.sendErrorMessage("Failed at finding Object: "+e.getMessage());
+					return null;
+				}
 			}
 			//query.executeUpdate();
 
@@ -265,12 +275,16 @@ public class QueryFrame {
 			if (action.equals("ADD")) {
 				String var = myTextArea.getText();
 				if (selectedColumn!= null && selectedOperation!= null && var!="" && var!=null) {
-					selectedElements.add(new QueryElement(selectedColumn,selectedOperation,var,selectedType));
-					String op = selectedColumn + " " + selectedOperation.getOperationCode() + " " + var + ",";
+
+					QueryElement qe = new QueryElement(selectedColumn,selectedOperation,var,selectedType);
+					selectedElements.add(qe);
+
+					String op = selectedColumn + " " + selectedOperation.getOperationCode() + " " + var;
 					infoArea.setText(infoArea.getText()+"\n"+op);
 					
 					selectedColumn = null;
 					selectedOperation = null;
+					selectedType = null;
 					operLabel.setText("<?>");
 					tableLabel.setText("<?>");
 					myTextArea.setText("");
@@ -279,22 +293,14 @@ public class QueryFrame {
 			}
 			else if (action.equals("EXEC")) {
 				List<?> l = ProcessQuery(generateQueryString());
-				masterGUI.displayStringArray(l);
+				masterGUI.setNewTable(l);
 			}
-			
-			for(String s:tables) {
-				if (action.equals(s)) {
-					selectedColumn=s;
-					tableLabel.setText(s);
-					return;
-				}
-			}
-			
+	
 			for(int i=0;i<tables.length;i++) {
 				if (action.equals(tables[i])) {
 					selectedColumn=tables[i];
 					selectedType=tablesTypes[i];
-					tableLabel.setText(tables[i]);
+					tableLabel.setText(selectedColumn);
 					return;
 				}
 			}

@@ -64,6 +64,14 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
 	
+	public String[] toStringArray() {
+		String[] s = new String[3];
+		s[0]=String.valueOf(id);
+		s[1]=name;
+		s[2]=surname;
+		return s;
+	}
+	
 	public void addSchedule(Schedule schedule) {
 		
 		

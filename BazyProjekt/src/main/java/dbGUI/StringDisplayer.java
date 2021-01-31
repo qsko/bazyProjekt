@@ -22,7 +22,11 @@ public class StringDisplayer {
 	
 	public void setStringArray(List<?> list) {
 		this.myList=list;
-		this.sLen=list.size();
+		if (list!=null) {
+			this.sLen=list.size();
+		}
+		else
+			this.sLen=0;
 		current=0;
 	}
 	
