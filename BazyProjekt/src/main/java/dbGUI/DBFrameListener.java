@@ -17,27 +17,28 @@ public class DBFrameListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(">>")) {
+		String action = e.getActionCommand();
+		if (action.equals(">>")) {
 			dbFrame.myStringDisplayer.increaseCurrent();
 			dbFrame.myStringDisplayer.displayN();
 			dbFrame.checkConstrains();
 		}
-		else if (e.getActionCommand().equals("<<")) {
+		else if (action.equals("<<")) {
 			dbFrame.myStringDisplayer.decreaseCurrent();
 			dbFrame.myStringDisplayer.displayN();
 			dbFrame.checkConstrains();
 		}
-		else if (e.getActionCommand().equals("+")) {
+		else if (action.equals("+")) {
 			dbFrame.myStringDisplayer.increaseMaxRecords();
 			dbFrame.myStringDisplayer.displayN();
 			dbFrame.checkConstrains();
 		}
-		else if (e.getActionCommand().equals("-")) {
+		else if (action.equals("-")) {
 			dbFrame.myStringDisplayer.decreaseMaxRecords();
 			dbFrame.myStringDisplayer.displayN();
 			dbFrame.checkConstrains();
 		}
-		else if (e.getActionCommand().equals("Add")){
+		else if (action.equals("Add")){
 			if (dbFrame.getCurrentTable()!=null) {
 				new AddFrame(dbFrame);
 				dbFrame.sendMessage("Adding new object of type "+dbFrame.getCurrentTable().name());
@@ -45,7 +46,7 @@ public class DBFrameListener implements ActionListener{
 			else
 				dbFrame.sendErrorMessage("No table selected!");
 		}
-		else if (e.getActionCommand().equals("Delete")){
+		else if (action.equals("Delete")){
 			if (dbFrame.getCurrentTable()!=null) {
 				new DeleteFrame(dbFrame);
 				dbFrame.sendMessage("Deleting object of type "+dbFrame.getCurrentTable().name());
@@ -53,21 +54,23 @@ public class DBFrameListener implements ActionListener{
 			else
 				dbFrame.sendErrorMessage("No table selected!");
 		}
-		else if (e.getActionCommand().equals("Table")){
-			//TODO
+		else if (action.equals("Table")){
 			new TableFrame(dbFrame);
 		}
-		else if (e.getActionCommand().equals("Backup")){
+		else if (action.equals("Backup")){
 			//TODO
 			dbFrame.sendMessage("TODO Backup");
 		}
-		else if (e.getActionCommand().equals("Query")){
+		else if (action.equals("Query")){
 			if (dbFrame.getCurrentTable()!=null) {
 				new QueryFrame(dbFrame);
 				dbFrame.sendMessage("Creating query on table "+dbFrame.getCurrentTable().name());
 			}
 			else
 				dbFrame.sendErrorMessage("No table selected!");
+		}
+		else if (action.equals("Refresh")) {
+			dbFrame.displayStringArray(dbFrame.getCurrentTable().getDAO().getObjectList());
 		}
 	}
 }

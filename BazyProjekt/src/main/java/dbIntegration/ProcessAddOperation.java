@@ -158,7 +158,7 @@ public class ProcessAddOperation {
 		
 		Contract nC = new Contract(ld1,ld2,ect,salary,ep);
 		nC.setEmployee(oE);		
-		Tables.Employee.getDAO().addObject(nC);
+		Tables.Contract.getDAO().addObject(nC);
 		masterFrame.sendMessage("Added new Contract.");
 		displayTable();
 	}

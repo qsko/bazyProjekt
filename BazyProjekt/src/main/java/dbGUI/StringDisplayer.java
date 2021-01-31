@@ -73,7 +73,7 @@ public class StringDisplayer {
 	public int getCurrent() {
 		return this.current;
 	}
-	
+
 	public int getSLen() {
 		return this.sLen;
 	}

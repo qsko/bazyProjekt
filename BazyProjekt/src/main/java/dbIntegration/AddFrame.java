@@ -47,6 +47,7 @@ public class AddFrame {
 		
 		
 		String[] variableNames = masterGUI.getCurrentTable().getTablesNames();
+		EntityTypes[] variableTypes = masterGUI.getCurrentTable().getTablesTypes();
 		length=variableNames.length;
 		
 		JPanel midPanel=new JPanel();
@@ -70,6 +71,10 @@ public class AddFrame {
 		for(String s: variableNames) {
 			JLabel myLabel = new JLabel(s);
 			leftPanel.add(myLabel);
+		}
+		
+		for(int i=0;i<length;i++) {
+			JLabel myLabel = new JLabel(variableNames[i]+" "+variableTypes[i].name());
 		}
 		
 		myTextAreas = new JTextArea[length];

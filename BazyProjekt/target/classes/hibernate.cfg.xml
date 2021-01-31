@@ -23,7 +23,7 @@
       </property>
       
       <property name = "hibernate.connection.password">
-         root
+	     root
       </property>
       
       <property name = "current_session_context_class">thread</property>

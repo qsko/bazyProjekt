@@ -33,7 +33,7 @@ public class DBFrameBuilder {
 	private void buildActionPanel() {
 		dbFrame.actionPanel = new JPanel();
 		//actionPanel.setLayout(new BoxLayout(actionPanel,BoxLayout.Y_AXIS));
-		dbFrame.actionPanel.setLayout(new GridLayout(8,1));
+		dbFrame.actionPanel.setLayout(new GridLayout(9,1));
 		dbFrame.actionPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder("Instructions"),
@@ -52,8 +52,11 @@ public class DBFrameBuilder {
 		backupButton.addActionListener(dbFrame.myListener);
 		JButton tableButton = new JButton("Table");
 		tableButton.addActionListener(dbFrame.myListener);
+		JButton refreshButton = new JButton("Refresh");
+		refreshButton.addActionListener(dbFrame.myListener);
 		
 		dbFrame.actionPanel.add(tableButton);
+		dbFrame.actionPanel.add(refreshButton);
 		dbFrame.actionPanel.add(Box.createRigidArea(null));
 		dbFrame.actionPanel.add(addRecord);
 		dbFrame.actionPanel.add(deleteRecord);
