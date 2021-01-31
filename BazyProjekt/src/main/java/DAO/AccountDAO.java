@@ -111,7 +111,7 @@ public class AccountDAO implements interfaceDAO{
 			accounts = query.getResultList();
 		
 			transaction.commit();
-		} catch(Exception ex) {
+		}catch(Exception ex) {
 		    //error occured rollback
 		    if (transaction != null) {
 		        transaction.rollback();

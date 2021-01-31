@@ -23,42 +23,51 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
+//		
+//	 	Employee employee = new Employee();
+//	 	employee.setName("nowy3");
+//	 	employee.setSurname("pracownik");
+//	 	EmployeeDAO employeeDao= new EmployeeDAO();
+//	 	employeeDao.addObject(employee);
+//	 	
+//	 	Employee employee2 = new Employee();
+//	 	employee2.setName("nowy2");
+//	 	employee2.setSurname("pracownik2");	 	
+//	 	employeeDao.addObject(employee2);
+//		
+//		Account account = new Account();
+//		account.setLogin("nowypracownik2");
+//		account.setPassword("aaa2");
+//		account.setEmployee(employee2);
+//		AccountDAO accountDao = new AccountDAO();
+//		accountDao.addObject(account);
+//		
+// 		ProductDAO productDao = new ProductDAO();
+// 		Product product = new Product("jablko2",1,1,PriceType.unit, Is_18.no);
+// 		
+// 		productDao.addObject(product);
+// 		
+// 		Delivery delivery = new Delivery(LocalDateTime.now(),Status.realised,"aaa");
+// 		DeliveryDAO deliveryDao = new DeliveryDAO();
+// 		deliveryDao.addObject(delivery);
+// 		
+// 		DeliveryProduct deliveryProduct = new DeliveryProduct(1);
+// 		deliveryProduct.setProduct(product);
+// 		deliveryProduct.setDelivery(delivery);
+// 		DeliveryProductsDAO  dpdao = new DeliveryProductsDAO();
+//		dpdao.addObject(deliveryProduct);
+//		
+//		ContractDAO accountDao = new ContractDAO();
+//		System.out.print(accountDao.getObjectList());
 		
-	 	Employee employee = new Employee();
-	 	employee.setName("nowy3");
-	 	employee.setSurname("pracownik");
-	 	EmployeeDAO employeeDao= new EmployeeDAO();
-	 	employeeDao.addObject(employee);
-	 	
-	 	Employee employee2 = new Employee();
-	 	employee2.setName("nowy2");
-	 	employee2.setSurname("pracownik2");	 	
-	 	employeeDao.addObject(employee2);
-		
-		Account account = new Account();
-		account.setLogin("nowypracownik2");
-		account.setPassword("aaa2");
-		account.setEmployee(employee2);
-		AccountDAO accountDao = new AccountDAO();
-		accountDao.addObject(account);
-		
- 		ProductDAO productDao = new ProductDAO();
- 		Product product = new Product("jablko2",1,1,PriceType.unit, Is_18.no);
- 		
- 		productDao.addObject(product);
- 		
- 		Delivery delivery = new Delivery(LocalDateTime.now(),Status.realised,"aaa");
- 		DeliveryDAO deliveryDao = new DeliveryDAO();
- 		deliveryDao.addObject(delivery);
- 		
- 		DeliveryProduct deliveryProduct = new DeliveryProduct(1);
- 		deliveryProduct.setProduct(product);
- 		deliveryProduct.setDelivery(delivery);
- 		DeliveryProductsDAO  dpdao = new DeliveryProductsDAO();
-		dpdao.addObject(deliveryProduct);
+	
 		
 		
+		InvoiceDAO invoiceDao = new InvoiceDAO();
+		System.out.print(invoiceDao.getObjectList());
 		
+
+	
 		
 		
 //		

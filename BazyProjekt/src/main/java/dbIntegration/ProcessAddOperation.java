@@ -277,7 +277,7 @@ public class ProcessAddOperation {
 			return;
 		}
 		
-		Product oP = (Product) Tables.Invoice.getDAO().getObjectById(p_id);
+		Product oP = (Product) Tables.Product.getDAO().getObjectById(p_id);
 		if (oP == null) {
 			masterFrame.sendErrorMessage("Error when adding object: No such product");
 			return;
