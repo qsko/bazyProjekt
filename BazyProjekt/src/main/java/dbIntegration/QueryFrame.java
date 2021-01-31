@@ -278,7 +278,7 @@ public class QueryFrame {
 					QueryElement qe = new QueryElement(selectedColumn,selectedOperation,var,selectedType);
 					selectedElements.add(qe);
 
-					String op = selectedColumn + " " + selectedOperation.getOperationCode() + " " + var + ",";
+					String op = selectedColumn + " " + selectedOperation.getOperationCode() + " " + var;
 					infoArea.setText(infoArea.getText()+"\n"+op);
 					
 					selectedColumn = null;

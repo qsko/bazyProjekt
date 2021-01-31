@@ -11,13 +11,14 @@ import org.hibernate.query.Query;
 import entity.DeliveryProduct;
 import entity.Invoice;
 import enums.InvoiceType;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class InvoiceDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object invoice) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
@@ -38,7 +39,7 @@ public class InvoiceDAO implements interfaceDAO{
 	public void updateObject(Object invoice) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -58,7 +59,7 @@ public class InvoiceDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Invoice invoice = null;
 		Transaction transaction = null;
 
@@ -79,7 +80,7 @@ public class InvoiceDAO implements interfaceDAO{
 	//getter by id
 	public Invoice getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Invoice invoice = null;
 		Transaction transaction = null;
 		
@@ -101,7 +102,7 @@ public class InvoiceDAO implements interfaceDAO{
 	public List<Invoice> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<Invoice> invoices = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -115,6 +116,7 @@ public class InvoiceDAO implements interfaceDAO{
 		}catch(Exception ex) {
 		    //error occured rollback
 		    if (transaction != null) {
+		    	ex.printStackTrace();
 		        transaction.rollback();
 		    }
 		}

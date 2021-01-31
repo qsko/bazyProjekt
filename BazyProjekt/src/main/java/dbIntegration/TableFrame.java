@@ -47,6 +47,7 @@ public class TableFrame {
 					}
 					catch (Exception f) {
 						masterFrame.sendErrorMessage("Display error: "+f.getMessage());
+						f.printStackTrace();
 						return;
 					}
 					masterFrame.myStringDisplayer.displayN();

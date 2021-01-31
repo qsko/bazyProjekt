@@ -17,7 +17,7 @@ public class AccountDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object account) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -37,7 +37,7 @@ public class AccountDAO implements interfaceDAO{
 	//update method
 	public void updateObject(Object account) {
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -57,7 +57,7 @@ public class AccountDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Account account = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -77,7 +77,7 @@ public class AccountDAO implements interfaceDAO{
 	//getter by id
 	public Object getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Account account = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -98,7 +98,7 @@ public class AccountDAO implements interfaceDAO{
 	public List<Account> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List <Account> accounts = null;
 		Transaction transaction = null;
 		

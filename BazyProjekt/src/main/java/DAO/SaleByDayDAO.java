@@ -19,7 +19,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object saleByDay) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
 		try {
@@ -44,7 +44,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	public void updateObject(Object saleByDay) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		Transaction transaction = null;
 		try {
@@ -69,7 +69,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		SaleByDay saleByDay = null;
 		Transaction transaction = null;
@@ -95,7 +95,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	//getter by date
 	public SaleByDay getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Session currentSession = sessionFactory.getCurrentSession();
 		SaleByDay saleByDay = null;
 		Transaction transaction = null;
@@ -118,7 +118,7 @@ public class SaleByDayDAO implements interfaceDAO{
 	public List<SaleByDay> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		List<SaleByDay> sales = null;
 		

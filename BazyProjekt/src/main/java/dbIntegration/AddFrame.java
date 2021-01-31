@@ -68,13 +68,9 @@ public class AddFrame {
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		
-		for(String s: variableNames) {
-			JLabel myLabel = new JLabel(s);
-			leftPanel.add(myLabel);
-		}
-		
 		for(int i=0;i<length;i++) {
-			JLabel myLabel = new JLabel(variableNames[i]+" "+variableTypes[i].name());
+			JLabel myLabel = new JLabel(variableNames[i]+" ("+variableTypes[i].name()+")");
+			leftPanel.add(myLabel);
 		}
 		
 		myTextAreas = new JTextArea[length];
@@ -114,8 +110,7 @@ public class AddFrame {
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(""),
 						BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		
-		
+
 		c.gridx=0;
 		c.gridy=0;
 		c.fill=GridBagConstraints.HORIZONTAL;

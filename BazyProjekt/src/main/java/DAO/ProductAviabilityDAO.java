@@ -9,13 +9,14 @@ import org.hibernate.query.Query;
 
 import entity.InvoiceProduct;
 import entity.ProductAviability;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class ProductAviabilityDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object productAviability) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -37,7 +38,7 @@ public class ProductAviabilityDAO implements interfaceDAO{
 	public void updateObject(Object productAviability) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -57,7 +58,7 @@ public class ProductAviabilityDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		ProductAviability productAviability = null;
 		Transaction transaction = null;
 
@@ -78,7 +79,7 @@ public class ProductAviabilityDAO implements interfaceDAO{
 	//getter by id
 	public ProductAviability getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		ProductAviability productAviability = null;
 		Transaction transaction = null;
 
@@ -98,7 +99,7 @@ public class ProductAviabilityDAO implements interfaceDAO{
 	public List<ProductAviability> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<ProductAviability> productsAviability = null;
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()){

@@ -8,13 +8,14 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import entity.InvoiceProduct;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class InvoiceProductDAO implements interfaceDAO{
 	//add method
 	public void addObject(Object invoiceProduct) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		try(Session currentSession = sessionFactory.getCurrentSession()){
 			
@@ -34,7 +35,7 @@ public class InvoiceProductDAO implements interfaceDAO{
 	public void updateObject(Object invoiceProduct) {
 		
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
@@ -54,7 +55,7 @@ public class InvoiceProductDAO implements interfaceDAO{
 	//delete method
 	public void removeObject(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		InvoiceProduct invoiceProduct = null;
 		Transaction transaction = null;
 
@@ -75,7 +76,7 @@ public class InvoiceProductDAO implements interfaceDAO{
 	//getter by id
 	public InvoiceProduct getObjectById(int id) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		InvoiceProduct invoiceProduct = null;
 		Transaction transaction = null;
 
@@ -97,7 +98,7 @@ public class InvoiceProductDAO implements interfaceDAO{
 	public List<InvoiceProduct> getObjectList(){
 	
 		// get session
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<InvoiceProduct> invoiceProducts = null;
 		Transaction transaction = null;
 
