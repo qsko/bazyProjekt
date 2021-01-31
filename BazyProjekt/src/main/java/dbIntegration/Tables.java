@@ -356,6 +356,40 @@ public enum Tables {
 			types[i++]=EntityTypes.DateTime;
 			return types;
 		}
+	},
+	LoginPosition {
+		@Override
+		public interfaceDAO getDAO() {
+			return new LoginPositionDAO();
+		}
+
+		@Override
+		public Class<?> getTableClass() {
+			return entity.LoginPosition.class;
+		}
+
+		@Override
+		public String[] getTablesNames() {
+			String[] names = new String [2];
+			int i=0;
+			names[i++]="login";
+			names[i++]="position";
+			return names;
+		}
+
+		@Override
+		public String getExactTableName() {
+			return "LoginPosition";
+		}
+
+		@Override
+		public EntityTypes[] getTablesTypes() {
+			EntityTypes[] t = new EntityTypes[2];
+			int i=0;
+			t[i++]=EntityTypes.String;
+			t[i]=EntityTypes.Position;
+			return t;
+		}
 	};
 	
 	public abstract interfaceDAO getDAO();

@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dbGUI.DatabaseGUI;
+import enums.Position;
 import login.VerifyLogin;
 
 public class LoginFrame {
@@ -95,12 +96,12 @@ public class LoginFrame {
 				myLabel.setText(login + " tried to log in.");
 				
 				System.out.println("Proba logowania: "+login+" haslo: "+password);
-	
+				
 				//TODO logowanie
 				try {
 					VerifyLogin vl = new VerifyLogin(login,password);
 					vl.buildConfig();
-					vl.verify();
+					System.out.println(vl.verify(login).name());
 				}
 				catch (Exception f) {
 					myLabel.setText("Blad logowania. Sprobuj ponownie.");
@@ -110,7 +111,7 @@ public class LoginFrame {
 				
 				myFrame.setVisible(false);
 				myFrame.dispose();
-				new DatabaseGUI("Welcome to Stonka database! Logged in as "+login+".");
+				new DatabaseGUI("Welcome to Stonka database! Logged in as "+login+".",Position.worker);
 			}
 		}
 	}

@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 import DAO.EmployeeDAO;
 import dbIntegration.Tables;
 import entity.Employee;
+import enums.Position;
 
 public class DatabaseGUI {
 	private JFrame myFrame;
@@ -34,7 +35,7 @@ public class DatabaseGUI {
 	JPanel masterPanel;
 	
 	/**Panel po prawej stronie ekranu zawierajacy pole tekstowe, wiadomosc oraz pasek na dole*/
-	JPanel dataPanel;
+	public JPanel dataPanel;
 	/**Panel po lewej zezwalajacy wykonac akcje*/
 	JPanel actionPanel;
 	
@@ -43,9 +44,12 @@ public class DatabaseGUI {
 	/**Panel w prawym dolnym rogu zawierajacy przyciski*/
 	MyMovePanel movePanel;
 	
+	private Position userPosition;
+
 	private Tables currentTable;
 	
 	public StringDisplayer myStringDisplayer;
+	public TableDisplayer myTableDisplayer;
 	
 	public DBFrameListener myListener;
 	
@@ -58,7 +62,8 @@ public class DatabaseGUI {
 			"frame","and","label","this","is","a","test","String","lenght","undefined","see","if","it","fits","inside","the",
 			"frame","and","label"};
 
-	public DatabaseGUI(String welcomeMessage) {
+	public DatabaseGUI(String welcomeMessage,Position userPosition) {
+		this.userPosition=userPosition;
 		myListener = new DBFrameListener(this);
 		new DBFrameBuilder(this).buildAllPanels();
 		
@@ -85,11 +90,18 @@ public class DatabaseGUI {
 	}
 
 	/**Funkcja wyswietla dany zbior lancuchow znakow*/
-	public void displayStringArray(List<?> list) {
+	/*
+	public void setNewTable(List<?> list) {
+		myTableDisplayer.setNewArray(list, currentTable);
+	}
+	*/
+	
+	public void setNewTable(List<?> list) {
 		myStringDisplayer.setStringArray(list);
 		myStringDisplayer.displayN();
 		checkConstrains();
 	}
+	
 	
 	/**Funkcja sprawdza rozmiar tabeli znakow i odpowiednio wyswietla przyciski
 	 * do zmiany wyswietlanych pozycji.
@@ -115,5 +127,8 @@ public class DatabaseGUI {
 	public Tables getCurrentTable() {
 		return currentTable;
 	}
-	
+
+	public Position getUserPosition() {
+		return userPosition;
+	}
 }

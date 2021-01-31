@@ -43,6 +43,15 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(employee.getId());
+		s[2]=login;
+		s[3]=password;
+		return s;
+	}
 
 
 
@@ -50,8 +59,6 @@ public class Account {
 	public String toString() {
 		return "Account [id=" + id + ", login=" + login + ", password=" + password + "]";
 	}
-
-
 
 	@Column(name="login")
 	private String login;

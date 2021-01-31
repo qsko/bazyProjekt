@@ -30,6 +30,7 @@ import com.mysql.cj.jdbc.integration.c3p0.MysqlConnectionTester;
 
 import dbGUI.DatabaseGUI;
 import entity.Account;
+import login.VerifyLogin;
 import util.HibernateUtil;
 
 public class QueryFrame {
@@ -173,7 +174,7 @@ public class QueryFrame {
 	}
 	
 	private List<?> ProcessQuery(String queryS) {
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		List<?> result = null;
 		Transaction transaction = null;
 		
@@ -292,7 +293,7 @@ public class QueryFrame {
 			}
 			else if (action.equals("EXEC")) {
 				List<?> l = ProcessQuery(generateQueryString());
-				masterGUI.displayStringArray(l);
+				masterGUI.setNewTable(l);
 			}
 	
 			for(int i=0;i<tables.length;i++) {

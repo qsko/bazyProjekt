@@ -49,6 +49,15 @@ public class ProductAviability {
 		return "ProductAviability [id=" + id + ", shopAmount=" + shopAmount + ", warehouseAmount=" + warehouseAmount
 				+ "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(prodId.getId());
+		s[2]=String.valueOf(shopAmount);
+		s[3]=String.valueOf(warehouseAmount);
+		return s;
+	}
 
 	public Product getProdId() {
 		return prodId;

@@ -30,6 +30,17 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", weight=" + weight + ", price=" + price + ", priceType="
 				+ priceType + ", is_18=" + is_18 + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[6];
+		s[0]=String.valueOf(id);
+		s[1]=name;
+		s[2]=String.valueOf(weight);
+		s[3]=String.valueOf(price);
+		s[4]=priceType.name();
+		s[5]=is_18.name();
+		return s;
+	}
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

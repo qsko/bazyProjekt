@@ -109,6 +109,6 @@ public enum EntityTypes {
 			throw new Exception("No such Status");
 		}
 	};
-	
+
 	public abstract Object fromString(String s) throws Exception;
 }

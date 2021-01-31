@@ -67,6 +67,18 @@ public class Contract {
 		return "Contract [id=" + id + ", beginning=" + beginning + ", ending=" + ending + ", type=" + type + ", salary="
 				+ salary + ", position=" + position + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[7];
+		s[0]=String.valueOf(s);
+		s[1]=String.valueOf(employee.getId());
+		s[2]=String.valueOf(beginning);
+		s[3]=String.valueOf(ending);
+		s[4]=type.name();
+		s[5]=String.valueOf(salary);
+		s[6]=position.name();
+		return s;
+	}
 
 	public Contract() {
 		super();

@@ -1,10 +1,17 @@
 package login;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Properties;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import entity.*;
+import enums.Position;
 
 public class VerifyLogin {
 	private String login;
@@ -38,11 +45,37 @@ public class VerifyLogin {
 		config.addAnnotatedClass(ProductAviability.class);
 		config.addAnnotatedClass(SaleByDay.class);
 		config.addAnnotatedClass(Schedule.class);
+		config.addAnnotatedClass(LoginPosition.class);
 		sessionFactory = config.buildSessionFactory();
 	}
 
 	/**Weryfikacja uzytkownika za pomoca pustej sesji*/
-	public void verify() throws Exception{
-		//TODO
+	public Position verify(String login) throws Exception{
+		SessionFactory sessionFactory = getSessionFactory();
+		if (sessionFactory==null) throw new Exception ("Critical Error");
+		
+		
+		Transaction transaction = null;
+		
+		try (Session session = sessionFactory.getCurrentSession()){
+			transaction = session.beginTransaction();
+			String query1="from LoginPosition where login = :var";
+			Query<?> q = session.createQuery(query1);
+			q.setParameter("var", login);
+			
+			List<LoginPosition> a = (List<LoginPosition>) q.list();
+			
+			if (a==null) {
+				throw new Exception("No employee data in database");
+			}
+			LoginPosition p = a.get(0);
+			
+			return p.getPosition();
+		}
+		catch (Exception e) {
+			if (transaction!=null)
+				transaction.rollback();
+		}
+		return null;
 	}
 }

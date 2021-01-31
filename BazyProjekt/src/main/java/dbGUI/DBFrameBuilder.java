@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 public class DBFrameBuilder {
@@ -42,28 +43,7 @@ public class DBFrameBuilder {
 		dbFrame.actionPanel.setMaximumSize(new Dimension(200, 300));
 		dbFrame.actionPanel.setBackground(DatabaseGUI.appColor1);
 
-		JButton addRecord = new JButton("Add");
-		addRecord.addActionListener(dbFrame.myListener);
-		JButton deleteRecord = new JButton("Delete");
-		deleteRecord.addActionListener(dbFrame.myListener);
-		JButton queryButton = new JButton("Query");
-		queryButton.addActionListener(dbFrame.myListener);
-		JButton backupButton = new JButton("Backup");
-		backupButton.addActionListener(dbFrame.myListener);
-		JButton tableButton = new JButton("Table");
-		tableButton.addActionListener(dbFrame.myListener);
-		JButton refreshButton = new JButton("Refresh");
-		refreshButton.addActionListener(dbFrame.myListener);
-		
-		dbFrame.actionPanel.add(tableButton);
-		dbFrame.actionPanel.add(refreshButton);
-		dbFrame.actionPanel.add(Box.createRigidArea(null));
-		dbFrame.actionPanel.add(addRecord);
-		dbFrame.actionPanel.add(deleteRecord);
-		dbFrame.actionPanel.add(Box.createRigidArea(null));
-		dbFrame.actionPanel.add(queryButton);
-		dbFrame.actionPanel.add(Box.createRigidArea(null));
-		dbFrame.actionPanel.add(backupButton);
+		new BuildActionPanel(dbFrame).buildActionPanel();
 	}
 	
 	private void buildInfoPanel() {
@@ -89,6 +69,15 @@ public class DBFrameBuilder {
 		dbFrame.myStringDisplayer=new StringDisplayer(dataArea);
 		
 		return new JScrollPane(dataArea);
+	}
+	
+	private JScrollPane buildTable() {
+		JScrollPane myScrollPane = new JScrollPane();
+		JTable myTable = new JTable();
+		myTable.setFont(DatabaseGUI.myFont1);
+
+		dbFrame.myTableDisplayer=new TableDisplayer(myTable,dbFrame);
+		return new JScrollPane(myTable);
 	}
 	
 	private void buildMovePanel() {
@@ -128,7 +117,7 @@ public class DBFrameBuilder {
 		dbFrame.movePanel.add(movePanelRight);
 	}
 
-	private void buildDataPanel(MyInfoPanel infoPanel,JScrollPane scrollPane,MyMovePanel movePanel) {
+	private void buildDataPanel(MyInfoPanel infoPanel,JScrollPane myTable,MyMovePanel movePanel) {
 		dbFrame.dataPanel = new JPanel();
 		dbFrame.dataPanel.setLayout(new BoxLayout(dbFrame.dataPanel,BoxLayout.PAGE_AXIS));
 		dbFrame.dataPanel.setBorder(
@@ -139,7 +128,7 @@ public class DBFrameBuilder {
 		
 		dbFrame.dataPanel.add(infoPanel);
 		dbFrame.dataPanel.add(Box.createRigidArea(new Dimension(0,10)));
-		dbFrame.dataPanel.add(scrollPane);
+		dbFrame.dataPanel.add(myTable);
 		dbFrame.dataPanel.add(Box.createRigidArea(new Dimension(0,10)));
 		dbFrame.dataPanel.add(movePanel);
 	}

@@ -75,6 +75,15 @@ public class InvoiceProduct {
 	public String toString() {
 		return "InvoiceProduct [id=" + id + ", amount=" + amount + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[4];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(invoice.getId());
+		s[2]=String.valueOf(product.getId());
+		s[3]=String.valueOf(amount);
+		return s;
+	}
 
 
 }

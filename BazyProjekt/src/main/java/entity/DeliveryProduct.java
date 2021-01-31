@@ -38,6 +38,14 @@ public class DeliveryProduct {
 	public String toString() {
 		return "DeliveryProduct [id=" + id + ", delivery_id=" + delivery.getId() + ", product_id=" + product.getId() + ", amount=" + amount + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[3];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(delivery.getId());
+		s[2]=String.valueOf(product.getId());
+		return s;
+	}
 
 
 	public DeliveryProduct() {

@@ -40,6 +40,14 @@ public class SaleByDay {
 	public String toString() {
 		return "SaleByDay [id="+id+", date=" + date + ", amount=" + amount + "]";
 	}
+	
+	public String[] toStringArray() {
+		String[] s = new String[3];
+		s[0]=String.valueOf(id);
+		s[1]=String.valueOf(date);
+		s[2]=String.valueOf(amount);;
+		return s;
+	}
 
 	public LocalDate getDate() {
 		return date;
