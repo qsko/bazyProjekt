@@ -95,8 +95,6 @@ public class LoginFrame {
 				loginText.setMsg();
 				myLabel.setText(login + " tried to log in.");
 				
-				System.out.println("Proba logowania: "+login+" haslo: "+password);
-				
 				Position p;
 				//TODO logowanie
 				try {
