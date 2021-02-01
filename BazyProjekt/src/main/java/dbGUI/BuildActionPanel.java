@@ -55,7 +55,8 @@ public class BuildActionPanel {
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(queryButton);
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
-		masterGUI.actionPanel.add(backupButton);
+		//masterGUI.actionPanel.add(backupButton);
+		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(procedureButton);
 	}
 	

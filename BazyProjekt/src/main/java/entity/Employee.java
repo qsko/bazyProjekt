@@ -32,7 +32,7 @@ public class Employee {
 	private String surname;
 
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="employeeId")
+	@JoinColumn(name="employee_Id")
 	private List<Schedule> schedules;
 	
 	public int getId() {
