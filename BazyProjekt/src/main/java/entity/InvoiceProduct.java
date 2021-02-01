@@ -73,7 +73,7 @@ public class InvoiceProduct {
 
 	@Override
 	public String toString() {
-		return "InvoiceProduct [id=" + id + ", amount=" + amount + "]";
+		return "InvoiceProduct [id=" + id + ",invoice_id=" + invoice.getId() + ", product_id=" + product.getId() + ", amount=" + amount + "]";
 	}
 	
 	public String[] toStringArray() {
