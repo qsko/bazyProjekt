@@ -1,0 +1,97 @@
+DELIMITER $$
+
+create trigger afterInsertInvoiceProductsTrigger after insert on
+Invoice_Products
+
+for each row
+begin
+
+DECLARE time datetime;
+
+select date into time from Invoices where new.invoice_id = Invoices.id;
+
+-- cast datetime to time
+set time = cast(time as date);
+
+set @invoice_id = 0;
+select id into @invoice_id from Invoices where new.invoice_id = Invoices.id;
+
+
+ update Sales_by_day set amount = amount + invoiceValue(@invoice_id)
+	where Sales_by_day.date = time;
+
+
+end $$
+DELIMITER ;		
+
+-- triggery
+
+DELIMITER $$
+
+create trigger afterInsertInvoiceProductsTrigger2 after insert on
+Invoice_Products
+
+for each row
+begin
+
+set @amount = 0;
+select amount into @amount from Invoice_Products ip where ip.id = new.id;
+
+set @productId = 0;
+select product_id into @productId from Invoice_Products ip where ip.id = new.id;
+
+update Products_aviability set shop_amount = shop_amount - @amount
+where prod_id = @product_Id;
+
+end $$
+DELIMITER ;		
+
+
+
+
+DELIMITER $$
+
+create trigger afterUpdateDeliveriesTrigger before update on
+Deliveries
+
+for each row
+begin
+
+	if old.status= 'realised'
+    then
+		signal sqlstate '45000'
+			set message_text = 'you cant change realised delivery';
+	end if;
+
+end $$
+DELIMITER ;	
+
+
+DELIMITER $$
+create trigger beforeUpdateProductsAviabilityTrigger before update on
+Products_aviability
+for each row
+
+begin
+
+set @price_type = NULL;  
+
+select price_type into @price_type from Product where Product.id = OLD.prod_id;
+
+if OLD.shop_amount = 0
+	then
+		if @price_type = `unit`
+			then begin 
+			
+			set new.shop_amount = 100; 
+			set new.warehouse_amount = OLD.warehouse_amount-100;
+		end; 
+        else
+			begin
+			set new.shop_amount = 10000; 
+			set new.warehouse_amount = OLD.warehouse_amount-10000;
+            end;
+		end if;
+end if;
+end $$
+DELIMITER ;

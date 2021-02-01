@@ -1,0 +1,33 @@
+-- zwraca wartosc w groszach
+DELIMITER $$
+
+CREATE FUNCTION invoiceValue(
+    invoice_id INT
+)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	
+ return (select SUM(t.Product_price) from (select i.product_id, i.amount, p.price_type, p.price, i.amount * p.price as Product_price from
+    (select product_id, amount from Invoice_Products i where i.invoice_id = invoice_id) as i join 
+    (select id,price_type, price from Products p) as p on
+    i.product_id = p.id
+	) as t);
+    
+END $$
+
+DELIMITER ;           
+  
+  Delimiter $$
+  CREATE FUNCTION payInMonth(
+)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	
+return (select sum(s.salary)
+ from
+ (select salary from Contracts where beginning <= Curdate() and ending >= Curdate()) as s);
+    
+END $$
+DELIMITER ;	

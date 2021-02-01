@@ -1,0 +1,24 @@
+-- procedury       
+
+-- wyswietl produkty z dokumentu
+delimiter $$
+create procedure selectItemsFromInvoice(in invoice_id int)
+	BEGIN
+		
+         
+		select Products.name, ip.amount from Products join
+		(SELECT product_id pid, amount  FROM Invoice_Products 
+         where Invoice_Products.invoice_id = invoice_id) as ip
+        on Products.id = ip.pid;
+    END $$
+delimiter ;
+
+
+-- wyswietl id faktur po nip
+delimiter $$
+create procedure selectInvoicesByNIP(in nip int)
+	BEGIN
+		select id from Invoices where Invoices.nip = nip;
+         
+    END $$
+delimiter ;
