@@ -97,11 +97,13 @@ public class LoginFrame {
 				
 				System.out.println("Proba logowania: "+login+" haslo: "+password);
 				
+				Position p;
 				//TODO logowanie
 				try {
 					VerifyLogin vl = new VerifyLogin(login,password);
 					vl.buildConfig();
-					System.out.println(vl.verify(login).name());
+					p=vl.verify(login);
+					System.out.println(p.name());
 				}
 				catch (Exception f) {
 					myLabel.setText("Blad logowania. Sprobuj ponownie.");
@@ -111,7 +113,7 @@ public class LoginFrame {
 				
 				myFrame.setVisible(false);
 				myFrame.dispose();
-				new DatabaseGUI("Welcome to Stonka database! Logged in as "+login+".",Position.worker);
+				new DatabaseGUI("Welcome to Stonka database! Logged in as "+login+".",p);
 			}
 		}
 	}

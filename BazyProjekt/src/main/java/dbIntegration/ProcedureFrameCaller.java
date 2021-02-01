@@ -15,7 +15,7 @@ import entity.Product;
 import login.VerifyLogin;
 
 public class ProcedureFrameCaller {
-	public int callFUNCTION1(int productid, LocalDate date1, LocalDate date2) {
+	public static int callFUNCTION1(int productid, LocalDate date1, LocalDate date2) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		
@@ -38,7 +38,7 @@ public class ProcedureFrameCaller {
 		}
 		return 0;	
 	}
-	public int callFUNCTION2(int invoiceid) {
+	public static int callFUNCTION2(int invoiceid) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		
@@ -59,7 +59,7 @@ public class ProcedureFrameCaller {
 		}
 		return 0;
 	}
-	public List<Product> callFUNCTION3(int invoiceid) {
+	public static List<Product> callFUNCTION3(int invoiceid) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		
@@ -82,7 +82,7 @@ public class ProcedureFrameCaller {
 		return null;
 	}
 
-	public List<Invoice> callFUNCTION4(int nip) {
+	public static List<Invoice> callFUNCTION4(int nip) {
 		SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 		Transaction transaction = null;
 		
