@@ -45,13 +45,13 @@ public class ProcedureFrameBuilder {
 		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
-		JButton ip = new JButton("INVOICE PRODUCTS");
+		JButton ip = new JButton("selectItemsFromInvoice");
 		ip.addActionListener(myActionListener);
 		myFrame.add(ip);
-		JButton si = new JButton("SHOW INVOICES BY NIP");
+		JButton si = new JButton("selectInvoicesByNIP");
 		si.addActionListener(myActionListener);
 		myFrame.add(si);
-		JButton cp = new JButton("CALCULATE PAYOUT");
+		JButton cp = new JButton("payInMonth");
 		cp.addActionListener(myActionListener);
 		myFrame.add(cp);
 	}
@@ -63,10 +63,10 @@ public class ProcedureFrameBuilder {
 		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
-		JButton ip = new JButton("INVOICE PRODUCTS");
+		JButton ip = new JButton("selectItemsFromInvoice");
 		ip.addActionListener(myActionListener);
 		myFrame.add(ip);
-		JButton si = new JButton("SHOW INVOICES BY NIP");
+		JButton si = new JButton("selectInvoicesByNIP");
 		si.addActionListener(myActionListener);
 		myFrame.add(si);
 		myFrame.add(Box.createRigidArea(null));
@@ -77,10 +77,10 @@ public class ProcedureFrameBuilder {
 		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
-		JButton ip = new JButton("INVOICE PRODUCTS");
+		JButton ip = new JButton("selectItemsFromInvoice");
 		ip.addActionListener(myActionListener);
 		myFrame.add(ip);
-		JButton si = new JButton("SHOW INVOICES BY NIP");
+		JButton si = new JButton("selectInvoicesByNIP");
 		si.addActionListener(myActionListener);
 		myFrame.add(si);
 		myFrame.add(Box.createRigidArea(null));

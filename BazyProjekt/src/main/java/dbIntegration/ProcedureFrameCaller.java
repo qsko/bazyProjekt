@@ -77,13 +77,15 @@ public class ProcedureFrameCaller {
 		
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			transaction = currentSession.beginTransaction();
-			
-			Query query = currentSession.createSQLQuery("CALL FUNCTION3(:var1)")
-					.addEntity(Product.class)
-					.setParameter("var1", invoiceid);
-			List<Product> results = query.getResultList();
+			Query query = currentSession.getNamedNativeQuery("callSelectItemsFromInvoice");
+			query.setParameter(1, invoiceid);
+			List<?> res = query.getResultList();
+			if (res==null) { 
+				return null;
+			}
+			List<Product> ress = (List<Product>) res;
 			transaction.commit();
-			return results;
+			return ress;
 		}
 		catch(Exception ex) {
 		    if (transaction != null) {
@@ -101,12 +103,11 @@ public class ProcedureFrameCaller {
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			transaction = currentSession.beginTransaction();
 			
-			Query query = currentSession.createSQLQuery("CALL FUNCTION4(:var1)")
-					.addEntity(Invoice.class)
+			Query query = currentSession.createSQLQuery("callSelectInvoicesByNIP")
 					.setParameter("var1", nip);
-			List<Invoice> results = query.getResultList();
+			List<?> results = query.getResultList();
 			transaction.commit();
-			return results;
+			return (List<Invoice>) results;
 		}
 		catch(Exception ex) {
 		    if (transaction != null) {
@@ -123,12 +124,13 @@ public class ProcedureFrameCaller {
 		
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			transaction = currentSession.beginTransaction();
-			
-			Query query = currentSession.createSQLQuery("CALL FUNCTION5()")
-					.addEntity(Integer.class);
-			List<Integer> results = query.getResultList();
+			Query query = currentSession.getNamedNativeQuery("callPayInMonth");
+			List<Integer> res = query.getResultList();
+			if (res.get(0)==null) { 
+				return 0;
+			}
 			transaction.commit();
-			return results.get(0);
+			return res.get(0);
 		}
 		catch(Exception ex) {
 		    if (transaction != null) {

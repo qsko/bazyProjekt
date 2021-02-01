@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,10 @@ import enums.Position;
 
 @Entity
 @Table(name = "Contracts")
+@NamedNativeQuery(
+		name="callPayInMonth",
+		query="select payInMonth()"
+)
 public class Contract {
 
 	@Id

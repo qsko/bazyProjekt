@@ -10,6 +10,9 @@ import enums.PriceType;
 
 @Entity
 @Table(name = "Products")
+@NamedNativeQuery(
+		name="callSelectItemsFromInvoice",
+		query="call selectItemsFromInvoice(?)")
 public class Product {
 
 	public Product(String name, int weight, int price, PriceType priceType, Is_18 is_18) {

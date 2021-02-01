@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
@@ -17,10 +18,14 @@ import enums.InvoiceType;
 
 @Entity
 @Table( name = "Invoices")
+@NamedNativeQueries({
 @NamedNativeQuery(
 		name="callInvoiceValue",
 		query="select invoiceValue(?)"
-)
+),
+@NamedNativeQuery(
+		name="callSelectInvoicesByNIP",
+		query="call selectInvoicesByNIP(?)")})
 public class Invoice {
 
 	@Id

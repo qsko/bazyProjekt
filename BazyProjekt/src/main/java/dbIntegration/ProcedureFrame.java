@@ -36,17 +36,17 @@ public class ProcedureFrame {
 					EntityTypes[] types = {EntityTypes.Integer};
 					new ProcedureFrameInsertParameters(masterFrame, vars, types,2);
 				}
-				else if (event.equals("INVOICE PRODUCTS")) {
+				else if (event.equals("selectItemsFromInvoice")) {
 					String[] vars = {"invoice_id"};
 					EntityTypes[] types = {EntityTypes.Integer};
 					new ProcedureFrameInsertParameters(masterFrame, vars, types,3);
 				}
-				else if (event.equals("SHOW INVOICES BY NIP")) {
+				else if (event.equals("selectInvoicesByNIP")) {
 					String[] vars = {"nip"};
 					EntityTypes[] types = {EntityTypes.Integer};
 					new ProcedureFrameInsertParameters(masterFrame, vars, types,4);
 				}
-				else if (event.equals("CALCULATE PAYOUT")) {
+				else if (event.equals("payInMonth")) {
 					int result = ProcedureFrameCaller.callFUNCTION5();
 					masterFrame.sendMessage("Required payout = " + String.valueOf(result));
 				}
