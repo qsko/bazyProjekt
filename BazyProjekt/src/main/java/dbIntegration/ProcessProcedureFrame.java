@@ -30,7 +30,7 @@ public class ProcessProcedureFrame {
 			case 2:
 				int invoice_id = (int) EntityTypes.Integer.fromString(args[0]);
 				int result = ProcedureFrameCaller.callFUNCTION2(invoice_id);
-				masterGUI.sendMessage("The value of invoice " + invoice_id + "is " + result);
+				masterGUI.sendMessage("The value of invoice " + invoice_id + " is " + result);
 				break;
 			case 3:
 				int invoice_id2 = (int) EntityTypes.Integer.fromString(args[0]);

@@ -66,7 +66,6 @@ public class ProductDAO implements interfaceDAO{
 		Transaction transaction = null;
 
 		try (Session currentSession = sessionFactory.getCurrentSession()){
-			
 			transaction = currentSession.beginTransaction();
 			product =currentSession.get(Product.class, id);
 			currentSession.delete(product);

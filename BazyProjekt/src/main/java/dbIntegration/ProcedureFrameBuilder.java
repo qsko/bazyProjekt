@@ -42,7 +42,7 @@ public class ProcedureFrameBuilder {
 		JButton nb = new JButton("NUMBER SOLD");
 		nb.addActionListener(myActionListener);
 		myFrame.add(nb);
-		JButton iv = new JButton("INVOICE NUMBER");
+		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
 		JButton ip = new JButton("INVOICE PRODUCTS");
@@ -60,7 +60,7 @@ public class ProcedureFrameBuilder {
 		JButton nb = new JButton("NUMBER SOLD");
 		nb.addActionListener(myActionListener);
 		myFrame.add(nb);
-		JButton iv = new JButton("INVOICE NUMBER");
+		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
 		JButton ip = new JButton("INVOICE PRODUCTS");
@@ -74,7 +74,7 @@ public class ProcedureFrameBuilder {
 
 	private void buildWorker() {
 		myFrame.add(Box.createRigidArea(null));
-		JButton iv = new JButton("INVOICE NUMBER");
+		JButton iv = new JButton("invoiceValue");
 		iv.addActionListener(myActionListener);
 		myFrame.add(iv);
 		JButton ip = new JButton("INVOICE PRODUCTS");

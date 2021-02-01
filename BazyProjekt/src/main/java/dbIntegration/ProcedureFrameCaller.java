@@ -1,14 +1,23 @@
 package dbIntegration;
 
+import java.awt.font.MultipleMaster;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.jdbc.Work;
 
 import entity.Invoice;
 import entity.Product;
@@ -44,14 +53,17 @@ public class ProcedureFrameCaller {
 		
 		try(Session currentSession = sessionFactory.getCurrentSession()) {
 			transaction = currentSession.beginTransaction();
-			Query query = currentSession.createSQLQuery("CALL FUNCTION2(:var1)")
-					.addEntity(Integer.class)
-					.setParameter("var1", invoiceid);
-			List<Integer> results = query.getResultList();
+			Query query = currentSession.getNamedNativeQuery("callInvoiceValue");
+			query.setParameter(1, invoiceid);
+			List<Integer> res = query.getResultList();
+			if (res.get(0)==null) { 
+				return 0;
+			}
 			transaction.commit();
-			return results.get(0);
+			return res.get(0);
 		}
 		catch(Exception ex) {
+			ex.printStackTrace();
 		    if (transaction != null) {
 		        transaction.rollback();
 		        return 0;

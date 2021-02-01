@@ -31,7 +31,7 @@ public class ProcedureFrame {
 					EntityTypes[] types = {EntityTypes.Integer,EntityTypes.Date,EntityTypes.Date};
 					new ProcedureFrameInsertParameters(masterFrame, vars, types,1);
 				}
-				else if (event.equals("INVOICE NUMBER")) {
+				else if (event.equals("invoiceValue")) {
 					String[] vars = {"invoice_id"};
 					EntityTypes[] types = {EntityTypes.Integer};
 					new ProcedureFrameInsertParameters(masterFrame, vars, types,2);
