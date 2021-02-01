@@ -45,7 +45,7 @@ public class BuildActionPanel {
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
 		JButton procedureButton = new JButton("Procedure");
-		refreshButton.addActionListener(masterGUI.myListener);
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -69,7 +69,7 @@ public class BuildActionPanel {
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
 		JButton procedureButton = new JButton("Procedure");
-		refreshButton.addActionListener(masterGUI.myListener);
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -95,7 +95,7 @@ public class BuildActionPanel {
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
 		JButton procedureButton = new JButton("Procedure");
-		refreshButton.addActionListener(masterGUI.myListener);
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -117,7 +117,7 @@ public class BuildActionPanel {
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
 		JButton procedureButton = new JButton("Procedure");
-		refreshButton.addActionListener(masterGUI.myListener);
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);

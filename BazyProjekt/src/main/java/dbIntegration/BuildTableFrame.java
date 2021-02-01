@@ -52,7 +52,7 @@ public class BuildTableFrame {
 				myFrame.add(Box.createRigidArea(null));
 		}
 	}
-	
+
 	private void buildWorker(JFrame myFrame,TableFrameListener myActionListener) {
 		for(Tables t: Tables.values()) {
 			if(t == Tables.Product || t==Tables.Employee || t==Tables.ProductAviability || t==Tables.Schedule || t==Tables.Invoice || t==Tables.InvoiceProduct) {
