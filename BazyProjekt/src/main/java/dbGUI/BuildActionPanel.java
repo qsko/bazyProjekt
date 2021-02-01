@@ -44,6 +44,8 @@ public class BuildActionPanel {
 		tableButton.addActionListener(masterGUI.myListener);
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
+		JButton procedureButton = new JButton("Procedure");
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -53,7 +55,9 @@ public class BuildActionPanel {
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(queryButton);
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
-		masterGUI.actionPanel.add(backupButton);
+		//masterGUI.actionPanel.add(backupButton);
+		masterGUI.actionPanel.add(Box.createRigidArea(null));
+		masterGUI.actionPanel.add(procedureButton);
 	}
 	
 	private void buildWorker() {
@@ -65,6 +69,8 @@ public class BuildActionPanel {
 		tableButton.addActionListener(masterGUI.myListener);
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
+		JButton procedureButton = new JButton("Procedure");
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -75,6 +81,7 @@ public class BuildActionPanel {
 		masterGUI.actionPanel.add(queryButton);
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
+		masterGUI.actionPanel.add(procedureButton);
 	}
 	
 	private void buildManager() {
@@ -88,6 +95,8 @@ public class BuildActionPanel {
 		tableButton.addActionListener(masterGUI.myListener);
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
+		JButton procedureButton = new JButton("Procedure");
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -98,6 +107,7 @@ public class BuildActionPanel {
 		masterGUI.actionPanel.add(queryButton);
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
+		masterGUI.actionPanel.add(procedureButton);
 	}
 	
 	private void buildCEO() {
@@ -107,6 +117,8 @@ public class BuildActionPanel {
 		tableButton.addActionListener(masterGUI.myListener);
 		JButton refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(masterGUI.myListener);
+		JButton procedureButton = new JButton("Procedure");
+		procedureButton.addActionListener(masterGUI.myListener);
 
 		masterGUI.actionPanel.add(tableButton);
 		masterGUI.actionPanel.add(refreshButton);
@@ -117,5 +129,6 @@ public class BuildActionPanel {
 		masterGUI.actionPanel.add(queryButton);
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
 		masterGUI.actionPanel.add(Box.createRigidArea(null));
+		masterGUI.actionPanel.add(procedureButton);
 	}
 }

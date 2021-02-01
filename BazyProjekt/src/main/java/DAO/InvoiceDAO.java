@@ -105,7 +105,7 @@ public class InvoiceDAO implements interfaceDAO{
 
 	
 		// get session
-				SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+				SessionFactory sessionFactory = VerifyLogin.getSessionFactory();
 				List<Invoice> invoices = null;
 				Transaction transaction = null;
 				

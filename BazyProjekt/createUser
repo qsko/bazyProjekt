@@ -1,0 +1,20 @@
+USE db;
+
+SET @login := 'admin';
+SET @pwd := 'admin';
+SET @employee_id := 1;
+SET @POSITION := 'admin';
+
+SET @stm := CONCAT("CREATE USER ", QUOTE(@login), "@localhost IDENTIFIED BY ", QUOTE(@pwd));
+PREPARE stmt FROM @stm;
+
+EXECUTE stmt;
+
+SET @stm2 := CONCAT("GRANT ALL ON db.* TO ",QUOTE(@login),"@localhost");
+PREPARE stmt2 FROM @stm2;
+EXECUTE stmt2;
+FLUSH PRIVILEGES;
+
+INSERT INTO loginposition(login,POSITION) VALUES (@login,@POSITION);
+SELECT MD5(@pwd) INTO @pwdmd5;
+INSERT INTO accounts VALUES (@login,@pwdmd5,@employee_id);

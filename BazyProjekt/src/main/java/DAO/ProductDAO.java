@@ -71,8 +71,11 @@ public class ProductDAO implements interfaceDAO{
 			product =currentSession.get(Product.class, id);
 			currentSession.delete(product);
 			transaction.commit();
-		}finally {
-			sessionFactory.close();
+		}catch(Exception ex) {
+		    //error occured rollback
+		    if (transaction != null) {
+		        transaction.rollback();
+		    }
 		}
 	}
 	

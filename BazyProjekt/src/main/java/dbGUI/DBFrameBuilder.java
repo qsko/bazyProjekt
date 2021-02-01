@@ -34,7 +34,7 @@ public class DBFrameBuilder {
 	private void buildActionPanel() {
 		dbFrame.actionPanel = new JPanel();
 		//actionPanel.setLayout(new BoxLayout(actionPanel,BoxLayout.Y_AXIS));
-		dbFrame.actionPanel.setLayout(new GridLayout(9,1));
+		dbFrame.actionPanel.setLayout(new GridLayout(10,1));
 		dbFrame.actionPanel.setBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder("Instructions"),

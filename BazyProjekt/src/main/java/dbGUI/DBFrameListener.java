@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import dbIntegration.AddFrame;
 import dbIntegration.DeleteFrame;
+import dbIntegration.ProcedureFrame;
 import dbIntegration.QueryFrame;
 import dbIntegration.TableFrame;
 
@@ -73,6 +74,9 @@ public class DBFrameListener implements ActionListener{
 				dbFrame.setNewTable(dbFrame.getCurrentTable().getDAO().getObjectList());
 			else
 				dbFrame.sendErrorMessage("No table selected!");
+		}
+		else if (action.equals("Procedure")) {
+			new ProcedureFrame(dbFrame);
 		}
 	}
 }
